@@ -15,18 +15,170 @@
       "Relatórios com exportação em CSV e PDF"
     ],
     "result": "Hoje a frota soma 617 reservas registradas e mais de 10 mil quilômetros controlados, com indicadores de uso por veículo, por departamento e por mês. Qualquer pessoa vê em segundos o que está disponível, e a coordenação decide com dados reais em vez de folhas de papel.",
-    "tech": ["React", "Supabase", "PostgreSQL", "Vercel"],
-    "cover_url": "img/frota/painel.jpg",
+    "tech": [
+      "React",
+      "Supabase",
+      "PostgreSQL",
+      "Vercel"
+    ],
+    "cover_url": "img/frota/hero-painel.jpg",
     "before_url": "img/frota/antes-planilha.jpg",
     "before_caption": "Antes: planilha de papel preenchida à mão a cada saída.",
     "images": [
-      { "url": "img/frota/painel.jpg", "caption": "Painel inicial com a situação da frota em tempo real" },
-      { "url": "img/frota/agenda.jpg", "caption": "Agenda mensal de reservas" },
-      { "url": "img/frota/indicadores.jpg", "caption": "Indicadores de reservas e uso por veículo" },
-      { "url": "img/frota/departamentos.jpg", "caption": "Uso por departamento e veículos mais solicitados" },
-      { "url": "img/frota/celular.jpg", "caption": "Versão no celular", "mobile": true }
+      {
+        "url": "img/frota/painel.jpg",
+        "caption": "Painel inicial com a situação da frota em tempo real"
+      },
+      {
+        "url": "img/frota/agenda.jpg",
+        "caption": "Agenda mensal de reservas"
+      },
+      {
+        "url": "img/frota/indicadores.jpg",
+        "caption": "Indicadores de reservas e uso por veículo"
+      },
+      {
+        "url": "img/frota/departamentos.jpg",
+        "caption": "Uso por departamento e veículos mais solicitados"
+      },
+      {
+        "url": "img/frota/celular.jpg",
+        "caption": "Versão no celular",
+        "mobile": true
+      }
     ],
     "sort": 1,
+    "published": true
+  },
+  {
+    "slug": "controle-de-abastecimento",
+    "title": "Controle de Abastecimento",
+    "client": "Almoxarifado UniFECAF e Colégio SER",
+    "summary": "Sistema para lançar e acompanhar o abastecimento de itens de consumo, como papel, sabonete e café, em 16 locais. Substituiu uma planilha com uma aba por produto e um bloco por andar.",
+    "challenge": "O abastecimento era controlado numa planilha com uma aba para cada produto e um bloco para cada local. Todo dia era preciso preencher linha por linha: quantidade, situação, responsável e se a baixa já tinha sido feita no sistema de estoque. A planilha crescia a cada mês, era fácil esquecer uma baixa, e para saber quanto cada local consumia ou comparar um mês com outro era preciso montar contas à mão.",
+    "solution": [
+      "Lançamento do abastecimento em poucos cliques, com o responsável identificado pelo login",
+      "Confirmação de baixas uma a uma ou em massa, para nada ficar esquecido",
+      "Dashboard com consumo do mês, consumo por produto e os locais que mais consomem",
+      "Alertas de locais sem abastecimento há mais de 15 dias e de metas acima do esperado",
+      "Relatórios comparativos entre meses, com exportação em PDF e CSV",
+      "Cadastro de produtos e locais, e perfis de acesso para administrador, supervisor e operador"
+    ],
+    "result": "O controle que antes se espalhava por várias abas virou um sistema único, com 6 produtos e 16 locais atendidos. As baixas pendentes ficam visíveis na hora, e a comparação entre meses sai em segundos: de setembro para outubro, por exemplo, o consumo total caiu 6,8% (de 412 para 384 unidades), com o detalhe de quais itens subiram e quais caíram.",
+    "tech": [
+      "React",
+      "Supabase",
+      "PostgreSQL",
+      "Vercel"
+    ],
+    "cover_url": "img/abastecimento/inicio.jpg",
+    "before_url": "img/abastecimento/antes-planilha.jpg",
+    "before_caption": "Antes: planilha com uma aba por produto e um bloco por andar.",
+    "images": [
+      {
+        "url": "img/abastecimento/inicio.jpg",
+        "caption": "Tela inicial com os números do mês"
+      },
+      {
+        "url": "img/abastecimento/dashboard.jpg",
+        "caption": "Dashboard com consumo, locais e alertas"
+      },
+      {
+        "url": "img/abastecimento/comparativo.jpg",
+        "caption": "Comparativo de consumo: setembro x outubro"
+      },
+      {
+        "url": "img/abastecimento/cadastros.jpg",
+        "caption": "Cadastro de produtos e unidades de medida"
+      }
+    ],
+    "sort": 2,
+    "published": true
+  },
+  {
+    "slug": "controle-de-estoque",
+    "title": "Controle de Estoque de Consumíveis",
+    "client": "Almoxarifado UniFECAF e Colégio SER (em implantação)",
+    "summary": "Sistema de entradas, saídas e posição de estoque, com avisos automáticos de reposição e relatórios por pessoa, departamento e produto. Criado para substituir um sistema lento, instável e sem relatórios.",
+    "challenge": "O sistema usado pelo almoxarifado era lento, saía do ar com frequência e não avisava quando um produto chegava ao estoque mínimo. Também não gerava relatórios detalhados, então saber quem retirou o quê, quanto cada departamento consumia ou o que precisava ser comprado dependia de levantamentos manuais.",
+    "solution": [
+      "Registro de saídas por pessoa e departamento, e de entradas com nota fiscal",
+      "Posição de estoque em tempo real, com o valor total pelo custo médio de cada produto",
+      "Avisos de estoque baixo, com sugestão de compra calculada pelo estoque mínimo",
+      "Relatórios por departamento, pessoa, prédio, local, produto, categoria e mês, com exportação em PDF e Excel",
+      "Cadastros completos de produtos, categorias, marcas, unidades, pessoas, departamentos, locais e fornecedores",
+      "Perfis de acesso para administradores, quem só registra movimentações e quem só consulta, com rastreabilidade de cada lançamento"
+    ],
+    "result": "O sistema já está publicado e entra em operação em janeiro, pensado para cerca de 3.500 itens, 350 colaboradores e até 70 movimentações por dia. Desde o primeiro dia, a equipe sabe o que precisa ser comprado sem montar planilhas, e a gestão tem relatórios de consumo prontos para exportar.",
+    "tech": [
+      "Supabase",
+      "PostgreSQL",
+      "Cloudflare"
+    ],
+    "cover_url": "img/estoque/inicio.jpg",
+    "images": [
+      {
+        "url": "img/estoque/inicio.jpg",
+        "caption": "Tela inicial com reposição, movimentações do dia e valor em estoque"
+      },
+      {
+        "url": "img/estoque/avisos.jpg",
+        "caption": "Avisos de estoque baixo com sugestão de compra"
+      },
+      {
+        "url": "img/estoque/relatorios.jpg",
+        "caption": "Relatórios com filtros e exportação em PDF e Excel"
+      },
+      {
+        "url": "img/estoque/produtos.jpg",
+        "caption": "Cadastro de produtos e demais cadastros"
+      }
+    ],
+    "sort": 3,
+    "published": true
+  },
+  {
+    "slug": "watts-oficina",
+    "title": "WATTS OS: gestão de oficina",
+    "client": "WATTS Soluções Automotivas (em implantação)",
+    "summary": "Sistema de ordens de serviço para oficina mecânica, com aprovação, controle de técnicos e vendedores, relatórios de faturamento e cálculo automático de comissões.",
+    "challenge": "Numa oficina com vários técnicos e vendedores, saber quem executou cada serviço, quanto cada ordem de serviço faturou e quanto cada pessoa tem a receber no fim do mês dá muito trabalho quando tudo depende de anotações e contas manuais. As regras de comissão variam por pessoa, o que torna o fechamento ainda mais sujeito a erro.",
+    "solution": [
+      "Abertura de ordens de serviço com veículo, serviços, peças e os técnicos que vão executar cada serviço",
+      "Fluxo de aprovação pelo administrador antes da execução",
+      "Acompanhamento de OS em aberto, em andamento e concluídas",
+      "Comissões calculadas sozinhas a partir das OS fechadas, com modelos por pessoa: só variável, fixa mais variável ou líder",
+      "Metas e bônus por faixa de faturamento",
+      "Relatórios diários, semanais e mensais com desempenho por técnico e exportação em PDF e CSV",
+      "Perfis de acesso para administrador, vendedor e técnico, com login por nome de usuário"
+    ],
+    "result": "O dono da oficina passa a ter, num só lugar, o faturamento do dia e do mês, as OS que aguardam aprovação e o desempenho de cada técnico. No fim do mês, as comissões já vêm calculadas: é só conferir, confirmar e marcar como pago.",
+    "tech": [
+      "React",
+      "Supabase",
+      "PostgreSQL",
+      "Vercel"
+    ],
+    "cover_url": "img/oficina/nova-os.jpg",
+    "images": [
+      {
+        "url": "img/oficina/nova-os.jpg",
+        "caption": "Abertura de ordem de serviço com técnicos responsáveis"
+      },
+      {
+        "url": "img/oficina/comissoes.jpg",
+        "caption": "Configuração de comissões por pessoa"
+      },
+      {
+        "url": "img/oficina/painel.jpg",
+        "caption": "Painel com faturamento e ordens de serviço"
+      },
+      {
+        "url": "img/oficina/relatorios.jpg",
+        "caption": "Relatórios com comparação mês a mês e desempenho por técnico"
+      }
+    ],
+    "sort": 4,
     "published": true
   }
 ]

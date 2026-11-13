@@ -4,7 +4,7 @@
 window.SITE_CONFIG = {
   SUPABASE_URL: "",          // ex.: "https://xxxx.supabase.co"
   SUPABASE_ANON_KEY: "",     // chave "anon public" do projeto
-  WHATSAPP: "5511962528030", // DDI + DDD + número, só dígitos
+  WHATSAPP: "55119XXXXXXXX", // DDI + DDD + número, só dígitos
   WHATSAPP_MSG: "Olá, Bruno! Vi seu site e quero conversar sobre um sistema para o meu negócio.",
   INSTAGRAM: "brunomoreno.dev",
   STORAGE_BUCKET: "portfolio"

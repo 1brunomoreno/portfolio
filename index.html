@@ -35,7 +35,7 @@
 html{scroll-behavior:smooth; scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;color:var(--text);background:var(--surface);-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:6px}
 .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
@@ -70,18 +70,17 @@ nav a:hover{color:var(--paper)}
 .hero p.lead{font-size:clamp(18px,1.6vw,20px);color:var(--mute);max-width:46ch;margin:0 0 36px}
 .hero p.lead strong{color:var(--paper);font-weight:600}
 .actions{display:flex;flex-wrap:wrap;gap:14px}
-.stage{position:relative;min-height:470px}
+.stage{position:relative;aspect-ratio:1/0.9;width:100%}
 .sheet,.screen{position:absolute;margin:0}
-.sheet{left:0;top:18px;width:72%;transform:rotate(-5deg);transform-origin:center;filter:saturate(.75) brightness(.92);box-shadow:0 30px 60px rgba(0,0,0,.45);border-radius:6px;overflow:hidden}
-.screen{right:-4%;top:110px;width:80%;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);background:#fff}
-.stage figcaption{position:absolute;font-size:14px;line-height:1.35;color:var(--mute);background:var(--navy-2);border:1px solid var(--line);padding:8px 12px;border-radius:10px;max-width:220px}
-.cap-before{left:4%;top:-18px}
-.cap-after{right:-2%;top:62px}
+.sheet{left:0;top:10%;width:66%;transform:rotate(-6deg);filter:brightness(.9) contrast(1.05);box-shadow:0 24px 50px rgba(0,0,0,.5);border-radius:4px;overflow:hidden}
+.screen{right:0;top:26%;width:84%;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);background:#F5F6FA}
+.stage figcaption{position:absolute;font-size:14px;line-height:1;white-space:nowrap;color:var(--mute);background:var(--navy-2);border:1px solid var(--line);padding:9px 12px;border-radius:999px}
+.cap-before{left:2%;top:0}
+.cap-after{right:3%;bottom:0}
 .cap-after b{color:var(--mint);font-weight:600}
 .cap-before b{color:var(--paper);font-weight:600}
 @media (max-width:900px){
-  .hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:96px;gap:40px}
-  .stage{min-height:0;aspect-ratio:1/0.92}
+  .hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:72px;gap:36px}
 }
 @media (prefers-reduced-motion: no-preference){
   .screen{animation:rise .9s cubic-bezier(.2,.7,.2,1) .25s both}
@@ -108,11 +107,17 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .project .btn{align-self:flex-start;margin-top:auto;background:var(--navy);color:var(--paper)}
 .project .btn:hover{background:var(--navy-3)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .project .btn{background:var(--mint);color:var(--navy)}}
+.project:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+.project:nth-child(even) .shot{order:2;padding:36px 36px 0 0;justify-content:flex-end}
+.project:nth-child(even) .shot img{border-radius:0 12px 0 0;object-position:top right}
 .more{margin-top:28px;color:var(--text-2);font-size:16px}
 @media (max-width:860px){
   .project{grid-template-columns:1fr}
   .project .shot{padding:24px 0 0 24px;min-height:0}
   .project .body{padding:28px 24px 28px}
+  .project:nth-child(even){grid-template-columns:1fr}
+  .project:nth-child(even) .shot{order:0;padding:24px 0 0 24px}
+  .project:nth-child(even) .shot img{border-radius:12px 0 0 0;object-position:top left}
 }
 
 /* Como trabalho */
@@ -218,7 +223,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
           <img src="img/frota/antes-planilha.jpg" alt="Planilha de papel usada para controlar a saída dos veículos, preenchida à mão" width="987" height="680">
         </figure>
         <figure class="screen">
-          <img src="img/frota/painel.jpg" alt="Painel do sistema de gestão de frota mostrando os veículos em uso e livres no dia" width="857" height="800">
+          <img src="img/frota/hero-painel.jpg" alt="Painel do sistema de gestão de frota mostrando os veículos em uso e livres no dia" width="857" height="602">
         </figure>
         <p class="sr">Antes, o controle era em papel. Depois, um painel em tempo real.</p>
         <figcaption class="cap-before" aria-hidden="true"><b>Antes:</b> controle em papel</figcaption>
@@ -231,7 +236,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     <div class="wrap">
       <div class="head">
         <h2>Projetos</h2>
-        <p>Sistemas que estão em uso hoje, resolvendo problemas reais de quem trabalha com eles todos os dias.</p>
+        <p>Sistemas reais, criados para resolver os problemas de quem trabalha com eles todos os dias.</p>
       </div>
       <div class="projects" id="project-list" aria-live="polite"></div>
     </div>
