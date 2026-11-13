@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Painel | brunomoreno.dev</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1424;--navy-2:#13203A;--mint:#3DDC97;--bg:#EEF1F5;--card:#fff;--text:#0B1424;--text-2:#4A5568;--line:#D9DEE6;--danger:#B42318;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A2E;--card:#13203A;--text:#F4F6F8;--text-2:#A9B4C6;--line:#24345A;--danger:#F97066;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:"Space Grotesk",system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.5}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+header{background:var(--navy);color:#F4F6F8;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header strong{font-size:18px}header em{font-style:normal;color:var(--mint)}
+main{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px}
+h1{font-size:28px;letter-spacing:-.03em;margin:0 0 6px}
+h2{font-size:20px;margin:0 0 14px;letter-spacing:-.02em}
+p.hint{color:var(--text-2);margin:0 0 18px;font-size:15px}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+input[type=text],input[type=email],input[type=password],input[type=number],textarea{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);min-height:44px}
+textarea{min-height:110px;resize:vertical}
+.field{margin-bottom:16px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.row{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:0;font:inherit;font-weight:600;cursor:pointer;background:var(--navy);color:#F4F6F8;text-decoration:none}
+.btn.mint{background:var(--mint);color:var(--navy)}
+.btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.danger{background:transparent;color:var(--danger);box-shadow:inset 0 0 0 1.5px currentColor}
+.btn:disabled{opacity:.55;cursor:wait}
+header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.list{display:grid;gap:12px}
+.item{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.item img{width:96px;height:64px;object-fit:cover;object-position:top left;border-radius:8px;background:var(--bg)}
+.item b{display:block}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:999px;background:var(--bg);color:var(--text-2);margin-top:4px}
+.tag.on{background:rgba(61,220,151,.18);color:inherit}
+@media (max-width:560px){.item{grid-template-columns:72px minmax(0,1fr)}.item img{width:72px;height:52px}.item .bar{grid-column:1/-1}}
+.imgs{display:grid;gap:12px}
+.img{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:start;padding:12px;border:1px solid var(--line);border-radius:12px}
+.img img{width:110px;height:76px;object-fit:cover;object-position:top left;border-radius:8px;background:var(--bg)}
+.thumb{width:180px;max-width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:10px;border:1px solid var(--line);background:var(--bg);display:block;margin-bottom:10px}
+.check{display:flex;align-items:center;gap:8px;font-weight:500;min-height:44px}
+.check input{width:20px;height:20px}
+.msg{padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:15px}
+.msg.err{background:rgba(180,35,24,.12);color:var(--danger)}
+.msg.ok{background:rgba(61,220,151,.18)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <strong>brunomoreno<em>.dev</em> · painel</strong>
+  <div class="bar">
+    <a class="btn ghost" href="./" target="_blank" rel="noopener">Ver site</a>
+    <button class="btn ghost" id="logout" type="button" hidden>Sair</button>
+  </div>
+</header>
+
+<main>
+  <div id="flash"></div>
+
+  <section class="card" id="v-setup" hidden>
+    <h1>Configure o Supabase</h1>
+    <p class="hint">Preencha SUPABASE_URL e SUPABASE_ANON_KEY no arquivo assets/config.js e publique de novo. O passo a passo está no README.</p>
+  </section>
+
+  <section class="card" id="v-login" hidden>
+    <h1>Entrar</h1>
+    <p class="hint">Acesso restrito para gerenciar os projetos do portfólio.</p>
+    <div class="field"><label for="email">E-mail</label><input type="email" id="email" autocomplete="username"></div>
+    <div class="field"><label for="pass">Senha</label><input type="password" id="pass" autocomplete="current-password"></div>
+    <button class="btn mint" id="do-login" type="button">Entrar</button>
+  </section>
+
+  <section id="v-list" hidden>
+    <div class="bar" style="justify-content:space-between;margin-bottom:18px">
+      <h1>Projetos</h1>
+      <div class="bar">
+        <button class="btn ghost" id="seed" type="button">Importar projetos iniciais</button>
+        <button class="btn mint" id="new" type="button">Novo projeto</button>
+      </div>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section id="v-edit" hidden>
+    <div class="bar" style="justify-content:space-between;margin-bottom:18px">
+      <h1 id="edit-title">Novo projeto</h1>
+      <button class="btn ghost" id="back" type="button">Voltar para a lista</button>
+    </div>
+
+    <div class="card">
+      <h2>Informações</h2>
+      <div class="row">
+        <div class="field"><label for="f-title">Nome do projeto</label><input type="text" id="f-title"></div>
+        <div class="field"><label for="f-slug">Endereço (slug)</label><input type="text" id="f-slug" placeholder="ex.: gestao-de-frota"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="f-client">Cliente</label><input type="text" id="f-client"></div>
+        <div class="field"><label for="f-sort">Ordem no site</label><input type="number" id="f-sort" value="1"></div>
+      </div>
+      <div class="field"><label for="f-summary">Resumo (aparece no card)</label><textarea id="f-summary" style="min-height:80px"></textarea></div>
+      <div class="field"><label for="f-tech">Tecnologias (separadas por vírgula)</label><input type="text" id="f-tech" placeholder="React, Supabase, Vercel"></div>
+      <label class="check"><input type="checkbox" id="f-published"> Publicado no site</label>
+    </div>
+
+    <div class="card">
+      <h2>História do projeto</h2>
+      <div class="field"><label for="f-challenge">O desafio</label><textarea id="f-challenge"></textarea></div>
+      <div class="field"><label for="f-solution">A solução (um item por linha)</label><textarea id="f-solution" style="min-height:150px"></textarea></div>
+      <div class="field"><label for="f-result">O resultado</label><textarea id="f-result"></textarea></div>
+    </div>
+
+    <div class="card">
+      <h2>Imagens</h2>
+      <div class="row">
+        <div class="field">
+          <label>Capa (tela principal)</label>
+          <img class="thumb" id="cover-prev" alt="">
+          <input type="file" accept="image/*" id="cover-file" aria-label="Enviar imagem de capa">
+        </div>
+        <div class="field">
+          <label>Antes (como era o processo)</label>
+          <img class="thumb" id="before-prev" alt="">
+          <input type="file" accept="image/*" id="before-file" aria-label="Enviar imagem de antes">
+          <div class="field" style="margin-top:10px"><label for="f-before-cap">Legenda do antes</label><input type="text" id="f-before-cap"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="gal-file">Galeria</label>
+        <p class="hint">Envie várias de uma vez. Marque "celular" nos prints de tela de celular.</p>
+        <input type="file" accept="image/*" id="gal-file" multiple>
+      </div>
+      <div class="imgs" id="imgs"></div>
+    </div>
+
+    <div class="bar">
+      <button class="btn mint" id="save" type="button">Salvar projeto</button>
+      <button class="btn danger" id="del" type="button" hidden>Excluir projeto</button>
+    </div>
+  </section>
+</main>
+
+<script src="assets/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+  const C = window.SITE_CONFIG || {};
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const views = ["setup","login","list","edit"];
+  const show = v => views.forEach(n => $("#v-"+n).hidden = n !== v);
+  const flash = (text, ok) => { $("#flash").innerHTML = text ? `<div class="msg ${ok?"ok":"err"}" role="status">${esc(text)}</div>` : ""; if (text) window.scrollTo(0,0); };
+
+  if (!C.SUPABASE_URL || !C.SUPABASE_ANON_KEY){ show("setup"); return; }
+  const sb = window.supabase.createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY);
+  const BUCKET = C.STORAGE_BUCKET || "portfolio";
+  let projects = [], cur = null;
+
+  const slugify = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+
+  async function upload(file, folder){
+    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+    const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+    const { error } = await sb.storage.from(BUCKET).upload(path, file, { cacheControl: "31536000", upsert: false });
+    if (error) throw error;
+    return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+
+  async function session(){
+    const { data } = await sb.auth.getSession();
+    $("#logout").hidden = !data.session;
+    if (!data.session) { show("login"); return; }
+    await loadList();
+  }
+
+  async function loadList(){
+    const { data, error } = await sb.from("projects").select("*").order("sort");
+    if (error){ flash("Não foi possível carregar os projetos: " + error.message); return; }
+    projects = data || [];
+    $("#list").innerHTML = projects.length ? projects.map(p => `
+      <div class="item">
+        <img src="${esc(p.cover_url||"")}" alt="">
+        <div><b>${esc(p.title)}</b><span class="tag ${p.published?"on":""}">${p.published?"Publicado":"Rascunho"}</span></div>
+        <div class="bar"><button class="btn ghost" type="button" data-edit="${esc(p.id)}">Editar</button></div>
+      </div>`).join("") : '<div class="card"><p class="hint" style="margin:0">Nenhum projeto ainda. Crie um novo ou importe os projetos iniciais.</p></div>';
+    show("list");
+  }
+
+  function fill(p){
+    cur = JSON.parse(JSON.stringify(p || { title:"", slug:"", client:"", summary:"", challenge:"", solution:[], result:"", tech:[], cover_url:"", before_url:"", before_caption:"", images:[], sort: projects.length + 1, published:false }));
+    $("#edit-title").textContent = p ? "Editar projeto" : "Novo projeto";
+    $("#f-title").value = cur.title; $("#f-slug").value = cur.slug; $("#f-client").value = cur.client || "";
+    $("#f-sort").value = cur.sort ?? 0; $("#f-summary").value = cur.summary || "";
+    $("#f-tech").value = (cur.tech||[]).join(", "); $("#f-published").checked = !!cur.published;
+    $("#f-challenge").value = cur.challenge || ""; $("#f-solution").value = (cur.solution||[]).join("\n"); $("#f-result").value = cur.result || "";
+    $("#f-before-cap").value = cur.before_caption || "";
+    $("#cover-prev").src = cur.cover_url || ""; $("#before-prev").src = cur.before_url || "";
+    $("#cover-file").value = ""; $("#before-file").value = ""; $("#gal-file").value = "";
+    $("#del").hidden = !cur.id;
+    renderImgs(); show("edit"); flash("");
+  }
+
+  function renderImgs(){
+    $("#imgs").innerHTML = (cur.images||[]).map((im,i) => `
+      <div class="img">
+        <img src="${esc(im.url)}" alt="">
+        <div>
+          <div class="field" style="margin-bottom:8px"><label for="cap-${i}">Legenda</label><input type="text" id="cap-${i}" data-cap="${i}" value="${esc(im.caption||"")}"></div>
+          <div class="bar">
+            <label class="check" style="margin:0"><input type="checkbox" data-mob="${i}" ${im.mobile?"checked":""}> Celular</label>
+            <button class="btn ghost" type="button" data-up="${i}" ${i===0?"disabled":""} aria-label="Subir imagem">Subir</button>
+            <button class="btn ghost" type="button" data-down="${i}" ${i===cur.images.length-1?"disabled":""} aria-label="Descer imagem">Descer</button>
+            <button class="btn danger" type="button" data-rm="${i}">Remover</button>
+          </div>
+        </div>
+      </div>`).join("");
+  }
+
+  $("#imgs").addEventListener("input", e => {
+    const t = e.target;
+    if (t.dataset.cap) cur.images[+t.dataset.cap].caption = t.value;
+    if (t.dataset.mob) cur.images[+t.dataset.mob].mobile = t.checked;
+  });
+  $("#imgs").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const L = cur.images;
+    if (b.dataset.rm){ L.splice(+b.dataset.rm,1); }
+    if (b.dataset.up){ const i=+b.dataset.up; [L[i-1],L[i]]=[L[i],L[i-1]]; }
+    if (b.dataset.down){ const i=+b.dataset.down; [L[i+1],L[i]]=[L[i],L[i+1]]; }
+    renderImgs();
+  });
+
+  $("#f-title").addEventListener("input", e => { if (!cur.id) $("#f-slug").value = slugify(e.target.value); });
+
+  $("#cover-file").addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { flash("Enviando capa…", true); cur.cover_url = await upload(f, "capas"); $("#cover-prev").src = cur.cover_url; flash("Capa enviada. Lembre de salvar o projeto.", true); }
+    catch(err){ flash("Erro ao enviar a capa: " + err.message); }
+  });
+  $("#before-file").addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { flash("Enviando imagem…", true); cur.before_url = await upload(f, "antes"); $("#before-prev").src = cur.before_url; flash("Imagem enviada. Lembre de salvar o projeto.", true); }
+    catch(err){ flash("Erro ao enviar a imagem: " + err.message); }
+  });
+  $("#gal-file").addEventListener("change", async e => {
+    const files = [...e.target.files]; if (!files.length) return;
+    try {
+      flash(`Enviando ${files.length} imagem(ns)…`, true);
+      for (const f of files){ cur.images.push({ url: await upload(f, "galeria"), caption: "", mobile: false }); renderImgs(); }
+      flash("Imagens enviadas. Escreva as legendas e salve o projeto.", true);
+    } catch(err){ flash("Erro ao enviar imagens: " + err.message); }
+    e.target.value = "";
+  });
+
+  $("#save").addEventListener("click", async () => {
+    const row = {
+      title: $("#f-title").value.trim(), slug: slugify($("#f-slug").value || $("#f-title").value),
+      client: $("#f-client").value.trim(), sort: parseInt($("#f-sort").value,10) || 0,
+      summary: $("#f-summary").value.trim(), tech: $("#f-tech").value.split(",").map(s=>s.trim()).filter(Boolean),
+      published: $("#f-published").checked, challenge: $("#f-challenge").value.trim(),
+      solution: $("#f-solution").value.split("\n").map(s=>s.trim()).filter(Boolean), result: $("#f-result").value.trim(),
+      cover_url: cur.cover_url || null, before_url: cur.before_url || null, before_caption: $("#f-before-cap").value.trim(),
+      images: cur.images || []
+    };
+    if (!row.title || !row.slug){ flash("Preencha o nome do projeto antes de salvar."); return; }
+    const btn = $("#save"); btn.disabled = true;
+    const q = cur.id ? sb.from("projects").update(row).eq("id", cur.id).select().single() : sb.from("projects").insert(row).select().single();
+    const { data, error } = await q; btn.disabled = false;
+    if (error){ flash("Não foi possível salvar: " + error.message); return; }
+    cur = data; $("#del").hidden = false; $("#edit-title").textContent = "Editar projeto";
+    flash(row.published ? "Projeto salvo e publicado no site." : "Projeto salvo como rascunho.", true);
+  });
+
+  $("#del").addEventListener("click", async () => {
+    if (!cur.id || !confirm(`Excluir "${cur.title}"? Essa ação não pode ser desfeita.`)) return;
+    const { error } = await sb.from("projects").delete().eq("id", cur.id);
+    if (error){ flash("Não foi possível excluir: " + error.message); return; }
+    flash("Projeto excluído.", true); await loadList();
+  });
+
+  $("#seed").addEventListener("click", async () => {
+    try{
+      const base = await (await fetch("data/projects.json",{cache:"no-cache"})).json();
+      const existing = new Set(projects.map(p=>p.slug));
+      const rows = base.filter(p => !existing.has(p.slug));
+      if (!rows.length){ flash("Os projetos iniciais já estão no painel.", true); return; }
+      const { error } = await sb.from("projects").insert(rows);
+      if (error) throw error;
+      flash(`${rows.length} projeto(s) importado(s).`, true); await loadList();
+    }catch(err){ flash("Erro ao importar: " + err.message); }
+  });
+
+  $("#new").addEventListener("click", () => fill(null));
+  $("#back").addEventListener("click", () => { flash(""); loadList(); });
+  $("#list").addEventListener("click", e => { const id = e.target.closest("[data-edit]")?.dataset.edit; if (id) fill(projects.find(p => p.id === id)); });
+
+  $("#do-login").addEventListener("click", async () => {
+    const btn = $("#do-login"); btn.disabled = true;
+    const { error } = await sb.auth.signInWithPassword({ email: $("#email").value.trim(), password: $("#pass").value });
+    btn.disabled = false;
+    if (error){ flash("E-mail ou senha incorretos."); return; }
+    flash(""); session();
+  });
+  $("#pass").addEventListener("keydown", e => { if (e.key === "Enter") $("#do-login").click(); });
+  $("#logout").addEventListener("click", async () => { await sb.auth.signOut(); session(); });
+
+  session();
+})();
+</script>
+</body>
+</html>

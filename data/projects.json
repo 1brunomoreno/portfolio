@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "gestao-de-frota",
+    "title": "Gestão de Frota Institucional",
+    "client": "UniFECAF e Colégio SER",
+    "summary": "Sistema de reservas, checklists e indicadores para a frota de veículos. Substituiu o controle em papel por um painel em tempo real, usado no dia a dia por 14 departamentos.",
+    "challenge": "O uso dos veículos era controlado numa planilha de papel, preenchida à mão a cada saída. Cada motorista anotava data, horário, destino e quilometragem do seu jeito. Linhas ficavam em branco, horários de retorno se perdiam e não havia como saber, na hora, qual carro estava livre. Para descobrir quanto cada veículo rodava ou qual setor mais usava a frota, era preciso juntar folhas e somar à mão.",
+    "solution": [
+      "Reservas online, com aprovação e bloqueio automático de horários em conflito",
+      "Painel “Frota hoje”, que mostra em tempo real quais veículos estão em uso, reservados ou livres",
+      "Checklist digital de saída e retorno, com registro de quilometragem",
+      "Agenda mensal com todas as reservas",
+      "Controle de abastecimentos, manutenções e custos por veículo",
+      "Notificações por e-mail e histórico completo de cada operação",
+      "Relatórios com exportação em CSV e PDF"
+    ],
+    "result": "Hoje a frota soma 617 reservas registradas e mais de 10 mil quilômetros controlados, com indicadores de uso por veículo, por departamento e por mês. Qualquer pessoa vê em segundos o que está disponível, e a coordenação decide com dados reais em vez de folhas de papel.",
+    "tech": ["React", "Supabase", "PostgreSQL", "Vercel"],
+    "cover_url": "img/frota/painel.jpg",
+    "before_url": "img/frota/antes-planilha.jpg",
+    "before_caption": "Antes: planilha de papel preenchida à mão a cada saída.",
+    "images": [
+      { "url": "img/frota/painel.jpg", "caption": "Painel inicial com a situação da frota em tempo real" },
+      { "url": "img/frota/agenda.jpg", "caption": "Agenda mensal de reservas" },
+      { "url": "img/frota/indicadores.jpg", "caption": "Indicadores de reservas e uso por veículo" },
+      { "url": "img/frota/departamentos.jpg", "caption": "Uso por departamento e veículos mais solicitados" },
+      { "url": "img/frota/celular.jpg", "caption": "Versão no celular", "mobile": true }
+    ],
+    "sort": 1,
+    "published": true
+  }
+]
