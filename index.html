@@ -301,7 +301,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   <div class="case-body" id="case-body"></div>
 </dialog>
 
-<script src="assets/config.js"></script>
+<script src="assets/config.js?v=2"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 (function(){
@@ -312,8 +312,12 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
 
   // WhatsApp
   const waUrl = C.WHATSAPP ? "https://wa.me/" + C.WHATSAPP.replace(/\D/g,"") + "?text=" + encodeURIComponent(C.WHATSAPP_MSG || "") : null;
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
   document.querySelectorAll(".js-wa").forEach(a => {
-    if (waUrl && !/X/.test(C.WHATSAPP)) { a.href = waUrl; a.target = "_blank"; a.rel = "noopener"; }
+    if (!waUrl || /X/.test(C.WHATSAPP)) { console.warn("WhatsApp não configurado em assets/config.js"); return; }
+    a.href = waUrl;
+    // No celular abre na mesma aba: o navegador do Instagram e alguns celulares bloqueiam nova aba.
+    if (!isTouch) { a.target = "_blank"; a.rel = "noopener"; }
   });
   if (C.INSTAGRAM){ const ig=$("#ig"); ig.href="https://instagram.com/"+C.INSTAGRAM; ig.textContent="Instagram @"+C.INSTAGRAM; }
   if (C.PORTRAIT_URL){ $("#portrait").innerHTML = '<img src="'+esc(C.PORTRAIT_URL)+'" alt="Foto de Bruno Moreno">'; }
