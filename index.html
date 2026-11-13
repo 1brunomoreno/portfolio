@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bruno Moreno | Sistemas e Automação</title>
-<meta name="description" content="Sistemas web sob medida para empresas e instituições que ainda dependem de papel, planilha e WhatsApp para funcionar.">
-<meta property="og:title" content="Bruno Moreno | Sistemas e Automação">
-<meta property="og:description" content="Sistemas sob medida que tiram seu negócio do papel.">
+<title>Bruno Moreno | Sites, Sistemas e Automação</title>
+<meta name="description" content="Sites e sistemas web sob medida para empresas e instituições que ainda dependem de papel, planilha e WhatsApp para funcionar.">
+<meta property="og:title" content="Bruno Moreno | Sites, Sistemas e Automação">
+<meta property="og:description" content="Sites e sistemas sob medida que tiram seu negócio do papel.">
 <meta property="og:image" content="img/frota/painel.jpg">
 <meta name="theme-color" content="#0B1424">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -66,7 +66,7 @@ nav a:hover{color:var(--paper)}
 /* Hero */
 .hero{background:var(--navy);color:var(--paper);overflow:hidden;position:relative}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center;padding-top:88px;padding-bottom:110px}
-.hero h1{font-size:clamp(40px,5.6vw,68px);line-height:1.02;letter-spacing:-.045em;font-weight:700;margin:0 0 24px;max-width:13ch}
+.hero h1{font-size:clamp(40px,5vw,62px);line-height:1.02;letter-spacing:-.045em;font-weight:700;margin:0 0 24px;max-width:15ch}
 .hero p.lead{font-size:clamp(18px,1.6vw,20px);color:var(--mute);max-width:46ch;margin:0 0 36px}
 .hero p.lead strong{color:var(--paper);font-weight:600}
 .actions{display:flex;flex-wrap:wrap;gap:14px}
@@ -93,6 +93,17 @@ section.block{padding:104px 0}
 h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin:0;font-weight:700}
 .head p{margin:0;color:var(--text-2);max-width:44ch}
 
+/* Serviços e filtros */
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.service{background:var(--card);border:1px solid var(--line-2);border-radius:var(--radius-lg);padding:32px 30px 34px}
+.service svg{width:40px;height:40px;color:var(--mint-ink);margin-bottom:22px}
+.service h3{margin:0 0 10px;font-size:23px;letter-spacing:-.025em}
+.service p{margin:0;color:var(--text-2);font-size:16px}
+@media (max-width:900px){.services{grid-template-columns:1fr}}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:-16px 0 32px}
+.filter{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line-2);background:var(--card);color:var(--text-2);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.filter:hover{color:var(--text)}
+.filter[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--surface)}
 /* Projetos */
 .projects{display:grid;gap:28px}
 .project{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);background:var(--card);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line-2)}
@@ -195,6 +206,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     </a>
     <nav aria-label="Principal">
       <ul>
+        <li><a href="#servicos">Serviços</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#como-trabalho">Como trabalho</a></li>
         <li><a href="#sobre">Sobre</a></li>
@@ -208,8 +220,8 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   <section class="hero">
     <div class="wrap">
       <div>
-        <h1>Sistemas sob medida que tiram seu negócio do papel.</h1>
-        <p class="lead">Eu sou o <strong>Bruno Moreno</strong>. Crio sistemas web para empresas e instituições que ainda dependem de planilha, caderno e WhatsApp para funcionar.</p>
+        <h1>Sites e sistemas sob medida que tiram seu negócio do papel.</h1>
+        <p class="lead">Eu sou o <strong>Bruno Moreno</strong>. Crio sites e sistemas web para empresas e instituições que querem crescer sem depender de planilha, caderno e WhatsApp.</p>
         <div class="actions">
           <a class="btn btn-mint js-wa" href="#contato">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
@@ -232,11 +244,42 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     </div>
   </section>
 
-  <section class="block" id="projetos">
+  <section class="block" id="servicos">
+    <div class="wrap">
+      <div class="head">
+        <h2>O que eu faço</h2>
+        <p>Do site que apresenta o seu negócio ao sistema que organiza a operação por dentro.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>
+          <h3>Sites</h3>
+          <p>Sites institucionais, páginas de vendas e lojas virtuais com domínio próprio, rápidos, feitos para o celular e com botão direto para o WhatsApp.</p>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><path d="M13.5 17.25h7.5M17.25 13.5V21"/></svg>
+          <h3>Sistemas sob medida</h3>
+          <p>Controle de estoque, frota, ordens de serviço, pedidos e o que mais o seu negócio precisar, com relatórios e acesso por perfil.</p>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6L13 3z"/></svg>
+          <h3>Automação e IA</h3>
+          <p>Tarefas repetitivas feitas sozinhas: alertas, relatórios automáticos, integrações e atendimento com inteligência artificial.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projetos" style="padding-top:24px">
     <div class="wrap">
       <div class="head">
         <h2>Projetos</h2>
-        <p>Sistemas reais, criados para resolver os problemas de quem trabalha com eles todos os dias.</p>
+        <p>Trabalhos reais, criados para resolver os problemas de quem usa todos os dias.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar projetos">
+        <button type="button" class="filter" data-f="todos" aria-pressed="true">Todos</button>
+        <button type="button" class="filter" data-f="sistema" aria-pressed="false">Sistemas</button>
+        <button type="button" class="filter" data-f="site" aria-pressed="false">Sites</button>
       </div>
       <div class="projects" id="project-list" aria-live="polite"></div>
     </div>
@@ -323,6 +366,12 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   if (C.PORTRAIT_URL){ $("#portrait").innerHTML = '<img src="'+esc(C.PORTRAIT_URL)+'" alt="Foto de Bruno Moreno">'; }
 
   let projects = [];
+  let filter = "todos";
+  document.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.f;
+    document.querySelectorAll(".filter").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderList();
+  }));
 
   async function load(){
     try{
@@ -350,7 +399,8 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       el.innerHTML = '<div class="empty">Os projetos estão sendo atualizados. Volte em breve ou fale comigo pelo WhatsApp.</div>';
       return;
     }
-    el.innerHTML = projects.map(p => `
+    const shown = filter === "todos" ? projects : projects.filter(p => (p.category || "sistema") === filter);
+    el.innerHTML = shown.map(p => `
       <article class="project">
         <div class="shot"><img src="${esc(p.cover_url)}" alt="Tela do projeto ${esc(p.title)}" loading="lazy"></div>
         <div class="body">
