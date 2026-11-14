@@ -23,6 +23,7 @@ p.hint{color:var(--text-2);margin:0 0 18px;font-size:15px}
 label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
 input[type=text],input[type=email],input[type=password],input[type=number],textarea{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);min-height:44px}
 textarea{min-height:110px;resize:vertical}
+select{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);min-height:44px}
 .field{margin-bottom:16px}
 .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:640px){.row{grid-template-columns:1fr}}
@@ -141,6 +142,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
         <div class="field"><label for="f-client">Cliente</label><input type="text" id="f-client"></div>
         <div class="field"><label for="f-sort">Ordem no site</label><input type="number" id="f-sort" value="1"></div>
       </div>
+      <div class="field"><label for="f-category">Tipo</label><select id="f-category"><option value="sistema">Sistema</option><option value="site">Site</option></select></div>
       <div class="field"><label for="f-summary">Resumo (aparece no card)</label><textarea id="f-summary" style="min-height:80px"></textarea></div>
       <div class="field"><label for="f-tech">Tecnologias (separadas por vírgula)</label><input type="text" id="f-tech" placeholder="React, Supabase, Vercel"></div>
       <label class="check"><input type="checkbox" id="f-published"> Publicado no site</label>
@@ -231,10 +233,10 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   }
 
   function fill(p){
-    cur = JSON.parse(JSON.stringify(p || { title:"", slug:"", client:"", summary:"", challenge:"", solution:[], result:"", tech:[], cover_url:"", before_url:"", before_caption:"", images:[], sort: projects.length + 1, published:false }));
+    cur = JSON.parse(JSON.stringify(p || { title:"", slug:"", client:"", summary:"", challenge:"", solution:[], result:"", tech:[], cover_url:"", before_url:"", before_caption:"", images:[], sort: projects.length + 1, published:false, category:"sistema" }));
     $("#edit-title").textContent = p ? "Editar projeto" : "Novo projeto";
     $("#f-title").value = cur.title; $("#f-slug").value = cur.slug; $("#f-client").value = cur.client || "";
-    $("#f-sort").value = cur.sort ?? 0; $("#f-summary").value = cur.summary || "";
+    $("#f-sort").value = cur.sort ?? 0; $("#f-category").value = cur.category || "sistema"; $("#f-summary").value = cur.summary || "";
     $("#f-tech").value = (cur.tech||[]).join(", "); $("#f-published").checked = !!cur.published;
     $("#f-challenge").value = cur.challenge || ""; $("#f-solution").value = (cur.solution||[]).join("\n"); $("#f-result").value = cur.result || "";
     $("#f-before-cap").value = cur.before_caption || "";
@@ -299,7 +301,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   $("#save").addEventListener("click", async () => {
     const row = {
       title: $("#f-title").value.trim(), slug: slugify($("#f-slug").value || $("#f-title").value),
-      client: $("#f-client").value.trim(), sort: parseInt($("#f-sort").value,10) || 0,
+      client: $("#f-client").value.trim(), sort: parseInt($("#f-sort").value,10) || 0, category: $("#f-category").value,
       summary: $("#f-summary").value.trim(), tech: $("#f-tech").value.split(",").map(s=>s.trim()).filter(Boolean),
       published: $("#f-published").checked, challenge: $("#f-challenge").value.trim(),
       solution: $("#f-solution").value.split("\n").map(s=>s.trim()).filter(Boolean), result: $("#f-result").value.trim(),
@@ -382,16 +384,17 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
     ].map(([l,v,s]) => `<div class="kpi"><span>${l}</span><b>${v}</b>${s?`<small>${s}</small>`:""}</div>`).join("");
     // gráfico por dia
     const byDay = {}; const labels = [];
-    for (let i = days-1; i >= 0; i--){ const d = new Date(Date.now() - i*864e5); const k = d.toISOString().slice(0,10); byDay[k] = { v:0, w:0 }; labels.push(k); }
-    views.forEach(r => { const k = r.created_at.slice(0,10); if (byDay[k]) byDay[k].v++; });
-    wa.forEach(r => { const k = r.created_at.slice(0,10); if (byDay[k]) byDay[k].w++; });
+    const dayKey = d => d.toLocaleDateString("sv-SE");
+    for (let i = days-1; i >= 0; i--){ const k = dayKey(new Date(Date.now() - i*864e5)); byDay[k] = { v:0, w:0 }; labels.push(k); }
+    views.forEach(r => { const k = dayKey(new Date(r.created_at)); if (byDay[k]) byDay[k].v++; });
+    wa.forEach(r => { const k = dayKey(new Date(r.created_at)); if (byDay[k]) byDay[k].w++; });
     const W = 720, H = 220, P = 28, bw = (W - P*2) / labels.length;
     const max = Math.max(1, ...labels.map(k => byDay[k].v));
     const bars = labels.map((k,i) => {
       const h = byDay[k].v / max * (H - P*2), x = P + i*bw, y = H - P - h;
       const wh = byDay[k].w / max * (H - P*2);
       const lab = (i === 0 || i === labels.length-1 || (days <= 7) || i % Math.ceil(labels.length/6) === 0) ? `<text x="${x+bw/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="currentColor" opacity=".6">${k.slice(8,10)}/${k.slice(5,7)}</text>` : "";
-      return `<rect x="${x+bw*.15}" y="${y}" width="${bw*.7}" height="${Math.max(h, byDay[k].v?2:0)}" rx="3" fill="#13203A" opacity=".85"><title>${k.split("-").reverse().join("/")}: ${byDay[k].v} visitas, ${byDay[k].w} cliques</title></rect>` + (wh ? `<rect x="${x+bw*.15}" y="${H-P-wh}" width="${bw*.7}" height="${wh}" rx="3" fill="#3DDC97"/>` : "") + lab;
+      return `<rect x="${x+bw*.15}" y="${y}" width="${bw*.7}" height="${Math.max(h, byDay[k].v?2:0)}" rx="3" fill="#8FA3C0" opacity=".55"><title>${k.split("-").reverse().join("/")}: ${byDay[k].v} visitas, ${byDay[k].w} cliques</title></rect>` + (wh ? `<rect x="${x+bw*.15}" y="${H-P-wh}" width="${bw*.7}" height="${wh}" rx="3" fill="#3DDC97"/>` : "") + lab;
     }).join("");
     $("#chart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Visitas por dia no período"><text x="${P}" y="14" font-size="12" fill="currentColor" opacity=".6">máx. ${max} visitas por dia; em verde, cliques no WhatsApp</text>${bars}<line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="currentColor" opacity=".2"/></svg>`;
     rank($("#sources"), count(views, "source"));
