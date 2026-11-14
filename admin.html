@@ -49,6 +49,19 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
 .msg{padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:15px}
 .msg.err{background:rgba(180,35,24,.12);color:var(--danger)}
 .msg.ok{background:rgba(61,220,151,.18)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.kpi span{display:block;font-size:14px;color:var(--text-2)}
+.kpi b{display:block;font-size:30px;letter-spacing:-.03em;margin-top:4px}
+.kpi small{color:var(--text-2);font-size:13px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.rank{display:grid;gap:10px}
+.rank div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:15px}
+.rank i{grid-column:1/-1;display:block;height:8px;border-radius:4px;background:var(--bg);overflow:hidden}
+.rank i em{display:block;height:100%;background:#3DDC97;border-radius:4px}
+.period:not(.ghost){background:var(--navy)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -56,6 +69,8 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
 <header>
   <strong>brunomoreno<em>.dev</em> · painel</strong>
   <div class="bar">
+    <button class="btn ghost" id="tab-projects" type="button" hidden>Projetos</button>
+    <button class="btn ghost" id="tab-metrics" type="button" hidden>Métricas</button>
     <a class="btn ghost" href="./" target="_blank" rel="noopener">Ver site</a>
     <button class="btn ghost" id="logout" type="button" hidden>Sair</button>
   </div>
@@ -86,6 +101,28 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
       </div>
     </div>
     <div class="list" id="list"></div>
+  </section>
+
+  <section id="v-metrics" hidden>
+    <div class="bar" style="justify-content:space-between;margin-bottom:18px">
+      <h1>Métricas</h1>
+      <div class="bar" role="group" aria-label="Período">
+        <button class="btn ghost period" type="button" data-d="7">7 dias</button>
+        <button class="btn period" type="button" data-d="30">30 dias</button>
+        <button class="btn ghost period" type="button" data-d="90">90 dias</button>
+      </div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="card"><h2>Visitas por dia</h2><div id="chart" class="chart"></div></div>
+    <div class="row">
+      <div class="card"><h2>De onde vêm</h2><div id="sources"></div></div>
+      <div class="card"><h2>Aparelho</h2><div id="devices"></div></div>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Projetos mais abertos</h2><div id="top-projects"></div></div>
+      <div class="card"><h2>Cliques no WhatsApp por seção</h2><div id="wa-sections"></div></div>
+    </div>
+    <p class="hint">Dados anônimos: o site não guarda nome, IP nem cookies. Visitas repetidas da mesma pessoa em 30 minutos contam uma vez.</p>
   </section>
 
   <section id="v-edit" hidden>
@@ -153,7 +190,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   const C = window.SITE_CONFIG || {};
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const views = ["setup","login","list","edit"];
+  const views = ["setup","login","list","edit","metrics"];
   const show = v => views.forEach(n => $("#v-"+n).hidden = n !== v);
   const flash = (text, ok) => { $("#flash").innerHTML = text ? `<div class="msg ${ok?"ok":"err"}" role="status">${esc(text)}</div>` : ""; if (text) window.scrollTo(0,0); };
 
@@ -175,6 +212,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   async function session(){
     const { data } = await sb.auth.getSession();
     $("#logout").hidden = !data.session;
+    $("#tab-projects").hidden = $("#tab-metrics").hidden = !data.session;
     if (!data.session) { show("login"); return; }
     await loadList();
   }
@@ -309,6 +347,61 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   });
   $("#pass").addEventListener("keydown", e => { if (e.key === "Enter") $("#do-login").click(); });
   $("#logout").addEventListener("click", async () => { await sb.auth.signOut(); session(); });
+
+  // ---------- Métricas ----------
+  let days = 30;
+  const NAMES = { "gestao-de-frota":"Gestão de Frota", "controle-de-abastecimento":"Controle de Abastecimento", "controle-de-estoque":"Controle de Estoque", "watts-oficina":"WATTS OS", "site-brunomorenodev":"Site de portfólio" };
+  const SECTION = { topo:"Topo do site", sobre:"Contato (final da página)", servicos:"Serviços", projetos:"Projetos" };
+  function rank(el, counts, labels){
+    const entries = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,8);
+    const max = entries.length ? entries[0][1] : 1;
+    el.innerHTML = entries.length ? '<div class="rank">' + entries.map(([k,v]) => `<div><span>${esc((labels && labels[k]) || k)}</span><b>${v}</b><i><em style="width:${Math.max(4, v/max*100)}%"></em></i></div>`).join("") + "</div>" : '<p class="hint" style="margin:0">Sem dados no período.</p>';
+  }
+  function count(list, key){ const c = {}; list.forEach(e => { const k = e[key] || "—"; c[k] = (c[k]||0) + 1; }); return c; }
+  async function loadMetrics(){
+    show("metrics"); flash("");
+    document.querySelectorAll(".period").forEach(b => b.classList.toggle("ghost", Number(b.dataset.d) !== days));
+    const since = new Date(Date.now() - days*864e5).toISOString();
+    let rows = [], from = 0;
+    while (true){
+      const { data, error } = await sb.from("events").select("type,slug,source,device,created_at").gte("created_at", since).order("created_at").range(from, from+999);
+      if (error){ flash("Não foi possível carregar as métricas: " + error.message); return; }
+      rows = rows.concat(data || []);
+      if (!data || data.length < 1000 || rows.length >= 20000) break;
+      from += 1000;
+    }
+    const views = rows.filter(r => r.type === "page_view");
+    const wa = rows.filter(r => r.type === "whatsapp_click");
+    const opens = rows.filter(r => r.type === "project_open");
+    const rate = views.length ? (wa.length / views.length * 100) : 0;
+    $("#kpis").innerHTML = [
+      ["Visitas", views.length, ""],
+      ["Cliques no WhatsApp", wa.length, ""],
+      ["Conversão", rate.toLocaleString("pt-BR",{maximumFractionDigits:1}) + "%", "cliques por visita"],
+      ["Projetos abertos", opens.length, ""]
+    ].map(([l,v,s]) => `<div class="kpi"><span>${l}</span><b>${v}</b>${s?`<small>${s}</small>`:""}</div>`).join("");
+    // gráfico por dia
+    const byDay = {}; const labels = [];
+    for (let i = days-1; i >= 0; i--){ const d = new Date(Date.now() - i*864e5); const k = d.toISOString().slice(0,10); byDay[k] = { v:0, w:0 }; labels.push(k); }
+    views.forEach(r => { const k = r.created_at.slice(0,10); if (byDay[k]) byDay[k].v++; });
+    wa.forEach(r => { const k = r.created_at.slice(0,10); if (byDay[k]) byDay[k].w++; });
+    const W = 720, H = 220, P = 28, bw = (W - P*2) / labels.length;
+    const max = Math.max(1, ...labels.map(k => byDay[k].v));
+    const bars = labels.map((k,i) => {
+      const h = byDay[k].v / max * (H - P*2), x = P + i*bw, y = H - P - h;
+      const wh = byDay[k].w / max * (H - P*2);
+      const lab = (i === 0 || i === labels.length-1 || (days <= 7) || i % Math.ceil(labels.length/6) === 0) ? `<text x="${x+bw/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="currentColor" opacity=".6">${k.slice(8,10)}/${k.slice(5,7)}</text>` : "";
+      return `<rect x="${x+bw*.15}" y="${y}" width="${bw*.7}" height="${Math.max(h, byDay[k].v?2:0)}" rx="3" fill="#13203A" opacity=".85"><title>${k.split("-").reverse().join("/")}: ${byDay[k].v} visitas, ${byDay[k].w} cliques</title></rect>` + (wh ? `<rect x="${x+bw*.15}" y="${H-P-wh}" width="${bw*.7}" height="${wh}" rx="3" fill="#3DDC97"/>` : "") + lab;
+    }).join("");
+    $("#chart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Visitas por dia no período"><text x="${P}" y="14" font-size="12" fill="currentColor" opacity=".6">máx. ${max} visitas por dia; em verde, cliques no WhatsApp</text>${bars}<line x1="${P}" x2="${W-P}" y1="${H-P}" y2="${H-P}" stroke="currentColor" opacity=".2"/></svg>`;
+    rank($("#sources"), count(views, "source"));
+    rank($("#devices"), count(views, "device"));
+    rank($("#top-projects"), count(opens, "slug"), NAMES);
+    rank($("#wa-sections"), count(wa, "slug"), SECTION);
+  }
+  document.querySelectorAll(".period").forEach(b => b.addEventListener("click", () => { days = Number(b.dataset.d); loadMetrics(); }));
+  $("#tab-metrics").addEventListener("click", loadMetrics);
+  $("#tab-projects").addEventListener("click", () => { flash(""); loadList(); });
 
   session();
 })();
