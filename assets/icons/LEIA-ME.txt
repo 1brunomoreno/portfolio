@@ -1,0 +1,7 @@
+Coloque aqui os ícones oficiais, baixados dos kits de marca das empresas:
+
+- linkedin.svg  (ou linkedin.png)
+- instagram.svg (ou instagram.png)
+
+Enquanto os arquivos não estiverem aqui, o rodapé mostra só o nome da rede e o seu perfil,
+sem nenhum espaço vazio ou ícone quebrado.

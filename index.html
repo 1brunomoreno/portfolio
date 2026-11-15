@@ -161,10 +161,24 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .cta h2{font-size:clamp(28px,3.4vw,40px);max-width:20ch}
 .cta p{margin:10px 0 0;color:var(--mute)}
 @media (max-width:820px){.about{grid-template-columns:1fr;gap:36px}.portrait{max-width:300px}.cta{padding:36px 28px}}
-footer{background:var(--navy);color:var(--mute);border-top:1px solid var(--line);font-size:15px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:28px;padding-bottom:36px}
-footer a{color:var(--mute)}.social{display:flex;gap:24px;flex-wrap:wrap}footer a:hover{color:var(--paper)}
 
+.site-foot{background:var(--navy);color:var(--mute);border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr) minmax(0,1fr);gap:48px;padding-top:64px;padding-bottom:48px}
+.foot-brand p{margin:18px 0 0;max-width:30ch;font-size:16px;line-height:1.5}
+.site-foot h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);margin:0 0 16px;font-weight:600}
+.foot-nav{display:flex;flex-direction:column;gap:10px}
+.foot-nav a{color:var(--mute);text-decoration:none;font-size:15px}
+.foot-nav a:hover{color:var(--paper)}
+.foot-contact{display:flex;flex-direction:column;gap:10px}
+.soc{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:14px;background:var(--navy-2);border:1px solid var(--line);color:var(--paper);text-decoration:none;min-height:52px;transition:border-color .15s ease,transform .15s ease}
+.soc:hover{border-color:var(--mint);transform:translateY(-1px)}
+.soc img,.soc svg{width:26px;height:26px;flex:none;border-radius:6px;object-fit:contain}
+.soc svg{color:var(--mint)}
+.soc span{display:flex;flex-direction:column;line-height:1.25;font-size:15px;font-weight:600}
+.soc small{font-size:12px;font-weight:500;color:var(--mute)}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;padding-bottom:32px;border-top:1px solid var(--line);font-size:14px}
+.foot-bottom a{color:var(--mute);text-decoration:none}.foot-bottom a:hover{color:var(--paper)}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:36px;padding-top:48px}}
 /* Detalhe do projeto */
 dialog.case{width:min(1080px,100vw);max-width:100vw;max-height:100dvh;height:100dvh;margin:0 0 0 auto;padding:0;border:0;background:var(--surface);color:var(--text);overflow:auto}
 dialog.case::backdrop{background:rgba(5,10,20,.7)}
@@ -335,13 +349,41 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>© <span id="year">2026</span> Bruno Moreno</span>
-    <span class="social">
-      <a id="li" href="https://www.linkedin.com/in/brunomorenodev" target="_blank" rel="noopener">LinkedIn</a>
-      <a id="ig" href="https://instagram.com/brunomoreno.dev" target="_blank" rel="noopener">Instagram @brunomoreno.dev</a>
-    </span>
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#inicio" aria-label="brunomoreno.dev, voltar ao início">
+        <span class="mark" aria-hidden="true"><span>bm<i></i></span></span>
+        <span><b>brunomoreno</b><em>.dev</em></span>
+      </a>
+      <p>Sites e sistemas sob medida que tiram seu negócio do papel.</p>
+    </div>
+    <nav class="foot-nav" aria-label="Rodapé">
+      <h2>Navegação</h2>
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#como-trabalho">Como trabalho</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <div class="foot-contact">
+      <h2>Contato</h2>
+      <a class="soc js-wa" href="#contato">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        <span><small>WhatsApp</small>Orçamento sem compromisso</span>
+      </a>
+      <a class="soc" id="li" href="https://www.linkedin.com/in/brunomorenodev" target="_blank" rel="noopener">
+        <img src="assets/icons/linkedin.svg" alt="" data-png="assets/icons/linkedin.png" onerror="if(this.dataset.png){this.src=this.dataset.png;this.dataset.png=''}else{this.remove()}">
+        <span><small>LinkedIn</small>/in/brunomorenodev</span>
+      </a>
+      <a class="soc" id="ig" href="https://instagram.com/brunomoreno.dev" target="_blank" rel="noopener">
+        <img src="assets/icons/instagram.svg" alt="" data-png="assets/icons/instagram.png" onerror="if(this.dataset.png){this.src=this.dataset.png;this.dataset.png=''}else{this.remove()}">
+        <span><small>Instagram</small>@brunomoreno.dev</span>
+      </a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© <span id="year">2026</span> Bruno Moreno. Todos os direitos reservados.</span>
+    <a href="#inicio">Voltar ao topo ↑</a>
   </div>
 </footer>
 
@@ -376,7 +418,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     if (!isTouch) { a.target = "_blank"; a.rel = "noopener"; }
   });
   if (C.LINKEDIN){ $("#li").href=$("#li2").href="https://www.linkedin.com/in/"+C.LINKEDIN; }
-  if (C.INSTAGRAM){ const ig=$("#ig"); ig.href="https://instagram.com/"+C.INSTAGRAM; ig.textContent="Instagram @"+C.INSTAGRAM; }
+  if (C.INSTAGRAM){ $("#ig").href="https://instagram.com/"+C.INSTAGRAM; }
   if (C.PORTRAIT_URL){ $("#portrait").innerHTML = '<img src="'+esc(C.PORTRAIT_URL)+'" alt="Foto de Bruno Moreno">'; }
 
   let projects = [];
