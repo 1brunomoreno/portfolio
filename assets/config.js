@@ -7,5 +7,6 @@ window.SITE_CONFIG = {
   WHATSAPP: "5511962528030", // DDI + DDD + número, só dígitos
   WHATSAPP_MSG: "Olá, Bruno! Vi seu site e quero conversar sobre um sistema para o meu negócio.",
   INSTAGRAM: "brunomoreno.dev",
+  LINKEDIN: "brunomorenodev",
   STORAGE_BUCKET: "portfolio"
 };
