@@ -180,6 +180,54 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;padding-bottom:32px;border-top:1px solid var(--line);font-size:14px}
 .foot-bottom a{color:var(--mute);text-decoration:none}.foot-bottom a:hover{color:var(--paper)}
 @media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:36px;padding-top:48px}}
+/* Monte seu projeto */
+.mb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.mb-panel{background:var(--card);border:1px solid var(--line-2);border-radius:var(--radius-lg);padding:32px}
+.mb-progress{height:6px;border-radius:3px;background:var(--surface);overflow:hidden}
+.mb-progress span{display:block;height:100%;width:25%;background:var(--mint);border-radius:3px;transition:width .35s ease}
+.mb-step{margin:18px 0 6px;font-size:14px;color:var(--text-2);font-weight:600}
+.mb-q{margin:0;font-size:30px;letter-spacing:-.03em;line-height:1.1;outline:none}
+.mb-hint{margin:8px 0 0;color:var(--text-2);font-size:15px;min-height:1px}
+.mb-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+.mb-opt{position:relative;text-align:left;font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--line-2);border-radius:16px;padding:14px 16px;cursor:pointer;min-height:64px;display:flex;flex-direction:column;gap:2px;transition:border-color .15s ease,background .15s ease}
+.mb-opt:hover{border-color:var(--mint)}
+.mb-opt b{font-size:16px;font-weight:600}
+.mb-opt small{font-size:13px;color:var(--text-2);line-height:1.35}
+.mb-opt[aria-pressed="true"]{border-color:var(--mint);background:rgba(61,220,151,.12)}
+.mb-opt[aria-pressed="true"]::after{content:"✓";position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--mint);color:var(--navy);font-size:13px;font-weight:700;display:grid;place-items:center}
+.mb-opt .sug{position:absolute;top:-9px;left:12px;font-size:11px;font-weight:700;background:var(--navy);color:var(--mint);padding:2px 8px;border-radius:999px}
+.mb-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.mb-back{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--line-2)}
+.mb-back[hidden],#mb-next[hidden]{display:none}
+.mb-next[disabled],#mb-next[disabled]{opacity:.45;cursor:not-allowed}
+.mb-sum{grid-column:1/-1;background:var(--surface);border-radius:16px;padding:18px 20px;font-size:15px;color:var(--text-2)}
+.mb-sum strong{color:var(--text);display:block;font-size:18px;margin-bottom:6px}
+.mb-sum ul{margin:8px 0 0;padding-left:18px}
+.mb-preview{position:sticky;top:96px}
+.mb-win{background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px rgba(11,20,36,.35);border:1px solid rgba(255,255,255,.06)}
+.mb-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;background:#0F1B30;border-bottom:1px solid rgba(255,255,255,.06)}
+.mb-bar i{width:11px;height:11px;border-radius:50%;background:#24345A}
+.mb-bar span{margin-left:10px;font-size:13px;color:#A9B4C6;background:#13203A;padding:5px 14px;border-radius:999px;font-family:ui-monospace,monospace}
+.mb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:20px;min-height:300px;align-content:start}
+.mb-empty{grid-column:1/-1;margin:90px 0;text-align:center;color:#7D8AA0;font-size:15px}
+.mb-tile{background:#13203A;border:1px solid #1C2C4C;border-radius:14px;padding:14px;color:#F4F6F8;animation:pop .35s cubic-bezier(.2,.8,.2,1) both}
+.mb-tile.site{border-color:rgba(61,220,151,.35)}
+.mb-tile .ti{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.mb-tile svg{width:22px;height:22px;color:#3DDC97;flex:none}
+.mb-tile .fx{margin-top:12px;display:flex;align-items:flex-end;gap:5px;height:34px}
+.mb-tile .fx span{flex:1;border-radius:3px 3px 1px 1px;background:#24345A}
+.mb-tile .fx span:last-child{background:#3DDC97}
+.mb-tile .ln{margin-top:12px;display:grid;gap:6px}
+.mb-tile .ln span{height:7px;border-radius:4px;background:#24345A}
+.mb-tile .ln span:nth-child(2){width:70%}.mb-tile .ln span:nth-child(3){width:45%}
+.mb-foot{display:flex;justify-content:space-between;padding:12px 20px 16px;font-size:13px;color:#A9B4C6;border-top:1px solid rgba(255,255,255,.06)}
+.mb-live{display:flex;align-items:center;gap:8px}
+.mb-live b{width:8px;height:8px;border-radius:50%;background:#3DDC97;animation:blink 1.4s ease-in-out infinite}
+@keyframes pop{from{opacity:0;transform:scale(.85) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){.mb-tile,.mb-live b{animation:none}}
+@media (max-width:900px){.mb{grid-template-columns:1fr}.mb-preview{position:static;order:-1}.mb-grid{min-height:0;grid-template-columns:repeat(3,minmax(0,1fr));padding:14px;gap:8px}.mb-tile{padding:10px}.mb-tile .ti{font-size:12px;gap:6px}.mb-tile svg{width:18px;height:18px}.mb-tile .fx,.mb-tile .ln{display:none}.mb-empty{margin:24px 0}.mb-panel{padding:24px 20px}.mb-q{font-size:26px}}
+@media (max-width:420px){.mb-opts{grid-template-columns:1fr}.mb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* Detalhe do projeto */
 dialog.case{width:min(1080px,100vw);max-width:100vw;max-height:100dvh;height:100dvh;margin:0 0 0 auto;padding:0;border:0;background:var(--surface);color:var(--text);overflow:auto}
 dialog.case::backdrop{background:rgba(5,10,20,.7)}
@@ -231,6 +279,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#como-trabalho">Como trabalho</a></li>
+        <li><a href="#monte">Monte seu projeto</a></li>
         <li><a href="#sobre">Sobre</a></li>
       </ul>
     </nav>
@@ -319,6 +368,35 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <li><h3>Desenvolvimento</h3><p>Você testa versões do sistema durante o caminho e pede ajustes.</p></li>
         <li><h3>Entrega e suporte</h3><p>Treinamento da equipe, sistema no ar e manutenção contínua.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="block" id="monte" style="padding-top:24px">
+    <div class="wrap">
+      <div class="head">
+        <h2>Monte seu projeto</h2>
+        <p>Escolha o que o seu negócio precisa e veja o seu projeto tomando forma. Leva menos de um minuto.</p>
+      </div>
+      <div class="mb">
+        <div class="mb-panel">
+          <div class="mb-progress" aria-hidden="true"><span id="mb-bar"></span></div>
+          <p class="mb-step" id="mb-step">Passo 1 de 4</p>
+          <h3 class="mb-q" id="mb-q" tabindex="-1">O que você precisa?</h3>
+          <p class="mb-hint" id="mb-hint"></p>
+          <div class="mb-opts" id="mb-opts" role="group"></div>
+          <div class="mb-nav">
+            <button type="button" class="btn mb-back" id="mb-back">Voltar</button>
+            <button type="button" class="btn btn-mint" id="mb-next">Continuar</button>
+          </div>
+        </div>
+        <div class="mb-preview" aria-live="polite">
+          <div class="mb-win">
+            <div class="mb-bar"><i></i><i></i><i></i><span id="mb-title">seu-projeto</span></div>
+            <div class="mb-grid" id="mb-grid"><p class="mb-empty">Seu projeto aparece aqui conforme você escolhe.</p></div>
+            <div class="mb-foot"><span id="mb-count">0 módulos</span><span class="mb-live"><b></b>montando ao vivo</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -543,6 +621,131 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     if (projects.some(p => p.slug === slug)) openCase(slug); else closeCase();
   }
   window.addEventListener("hashchange", route);
+
+
+  // ---------- Monte seu projeto ----------
+  (function(){
+    const I = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+    const ICON = {
+      pedidos:'<path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/>',
+      estoque:'<path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+      agenda:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+      os:'<path d="M14 3l7 7-4 4-7-7z"/><path d="M10 7L3 14v7h7l7-7"/>',
+      financeiro:'<path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/>',
+      frota:'<path d="M3 16V8h11l4 4h3v4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+      relatorios:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+      acessos:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+      avisos:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+      vitrine:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>',
+      catalogo:'<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
+      loja:'<path d="M3 4h2l2.5 11h11L21 7H6.5"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/>',
+      whatsapp:'<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
+      painel:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',
+      google:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/>'
+    };
+    const NEED = [
+      {id:'site', label:'Site', desc:'Pra ser encontrado e passar confiança'},
+      {id:'sistema', label:'Sistema', desc:'Pra organizar a operação por dentro'},
+      {id:'ambos', label:'Os dois', desc:'Vitrine e operação juntas'}
+    ];
+    const BIZ = [
+      {id:'oficina', label:'Oficina', desc:'Mecânica, elétrica, estética'},
+      {id:'restaurante', label:'Restaurante', desc:'Delivery, lanchonete, confeitaria'},
+      {id:'loja', label:'Loja', desc:'Roupas, presentes, varejo'},
+      {id:'instituicao', label:'Instituição', desc:'Escola, faculdade, empresa'},
+      {id:'servicos', label:'Serviços', desc:'Clínica, salão, consultoria'},
+      {id:'outro', label:'Outro', desc:'Me conta na conversa'}
+    ];
+    const MODS = [
+      {id:'pedidos', k:'sistema', label:'Pedidos e vendas', desc:'Tudo num lugar só, nada perdido no WhatsApp'},
+      {id:'estoque', k:'sistema', label:'Estoque com alertas', desc:'Aviso quando algo está acabando'},
+      {id:'agenda', k:'sistema', label:'Agenda de clientes', desc:'Horários e confirmações'},
+      {id:'os', k:'sistema', label:'Ordens de serviço', desc:'Do orçamento à entrega'},
+      {id:'financeiro', k:'sistema', label:'Financeiro e comissões', desc:'Contas e comissões calculadas'},
+      {id:'frota', k:'sistema', label:'Frota e reservas', desc:'Veículos, checklists e custos'},
+      {id:'relatorios', k:'sistema', label:'Relatórios e painéis', desc:'Números do negócio em tempo real'},
+      {id:'acessos', k:'sistema', label:'Acesso por perfil', desc:'Cada pessoa vê o que precisa'},
+      {id:'avisos', k:'sistema', label:'Avisos automáticos', desc:'E-mail e lembretes sozinhos'},
+      {id:'vitrine', k:'site', label:'Página da empresa', desc:'Quem você é e o que faz'},
+      {id:'catalogo', k:'site', label:'Catálogo', desc:'Produtos ou serviços com fotos'},
+      {id:'loja', k:'site', label:'Loja virtual', desc:'Venda online com pagamento'},
+      {id:'whatsapp', k:'site', label:'Botão de WhatsApp', desc:'Contato em um toque'},
+      {id:'painel', k:'site', label:'Painel pra atualizar', desc:'Você muda o conteúdo sozinho'},
+      {id:'google', k:'site', label:'Aparecer no Google', desc:'Ser encontrado por quem procura'}
+    ];
+    const SUG = {
+      oficina:['os','financeiro','estoque','relatorios','vitrine','whatsapp'],
+      restaurante:['pedidos','estoque','avisos','catalogo','whatsapp'],
+      loja:['pedidos','estoque','relatorios','catalogo','loja','whatsapp'],
+      instituicao:['estoque','frota','relatorios','acessos','vitrine'],
+      servicos:['agenda','avisos','financeiro','vitrine','whatsapp','google'],
+      outro:['relatorios','vitrine','whatsapp']
+    };
+    const st = { step:0, need:null, biz:null, mods:new Set() };
+    const el = id => document.getElementById(id);
+    const nameOf = (list,id) => (list.find(x => x.id===id)||{}).label || '';
+    const avail = () => MODS.filter(m => st.need==='ambos' || m.k===st.need);
+    const optBtn = (o, pressed, sug) => `<button type="button" class="mb-opt" data-id="${o.id}" aria-pressed="${pressed}">${sug?'<span class="sug">sugerido</span>':''}<b>${esc(o.label)}</b><small>${esc(o.desc)}</small></button>`;
+    function renderPreview(){
+      const chosen = MODS.filter(m => st.mods.has(m.id));
+      const t = st.need==='site' ? 'seu-site' : st.need==='sistema' ? 'seu-sistema' : st.need==='ambos' ? 'seu-site + sistema' : 'seu-projeto';
+      el('mb-title').textContent = st.biz ? `${t} · ${nameOf(BIZ,st.biz).toLowerCase()}` : t;
+      el('mb-count').textContent = chosen.length + (chosen.length===1 ? ' módulo' : ' módulos');
+      const g = el('mb-grid');
+      if (!chosen.length){ g.innerHTML = '<p class="mb-empty">Seu projeto aparece aqui conforme você escolhe.</p>'; return; }
+      const have = new Set([...g.querySelectorAll('.mb-tile')].map(x => x.dataset.id));
+      g.innerHTML = chosen.map(m => {
+        const deco = m.k==='sistema' ? '<div class="fx"><span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:85%"></span><span style="height:100%"></span></div>' : '<div class="ln"><span></span><span></span><span></span></div>';
+        return `<div class="mb-tile ${m.k}" data-id="${m.id}" style="${have.has(m.id)?'animation:none':''}"><div class="ti">${I(ICON[m.id])}${esc(m.label)}</div>${deco}</div>`;
+      }).join('');
+    }
+    function message(){
+      const what = st.need==='site' ? 'um site' : st.need==='sistema' ? 'um sistema' : 'um site e um sistema';
+      const mods = MODS.filter(m => st.mods.has(m.id)).map(m => m.label.toLowerCase());
+      const list = mods.length>1 ? mods.slice(0,-1).join(', ')+' e '+mods.slice(-1) : mods.join('');
+      return `Olá, Bruno! Montei meu projeto no seu site: ${what} para ${nameOf(BIZ,st.biz).toLowerCase()}, com ${list}. Quero conversar sobre ele.`;
+    }
+    function render(){
+      const steps = ['O que você precisa?','Qual é o seu negócio?','O que não pode faltar?','Seu projeto está pronto!'];
+      el('mb-bar').style.width = ((st.step+1)/4*100)+'%';
+      el('mb-step').textContent = `Passo ${st.step+1} de 4`;
+      el('mb-q').textContent = steps[st.step];
+      el('mb-back').hidden = st.step===0;
+      const o = el('mb-opts'), next = el('mb-next');
+      next.hidden = false; next.textContent = 'Continuar';
+      if (st.step===0){ el('mb-hint').textContent = 'Escolha uma opção.'; o.innerHTML = NEED.map(n => optBtn(n, st.need===n.id)).join(''); next.disabled = !st.need; }
+      if (st.step===1){ el('mb-hint').textContent = 'Assim eu sugiro os módulos certos pra você.'; o.innerHTML = BIZ.map(n => optBtn(n, st.biz===n.id)).join(''); next.disabled = !st.biz; }
+      if (st.step===2){
+        el('mb-hint').textContent = 'Marque quantos quiser. Já deixei sugestões pro seu tipo de negócio.';
+        const sug = new Set(SUG[st.biz]||[]);
+        o.innerHTML = avail().map(m => optBtn(m, st.mods.has(m.id), sug.has(m.id))).join('');
+        next.disabled = !st.mods.size; next.textContent = 'Ver meu projeto';
+      }
+      if (st.step===3){
+        el('mb-hint').textContent = 'Agora é só me mandar. Eu respondo com as próximas etapas, sem compromisso.';
+        const mods = MODS.filter(m => st.mods.has(m.id));
+        const what = st.need==='site' ? 'Site' : st.need==='sistema' ? 'Sistema' : 'Site + sistema';
+        o.innerHTML = `<div class="mb-sum"><strong>${what} para ${esc(nameOf(BIZ,st.biz).toLowerCase())}</strong>${mods.length} ${mods.length===1?'módulo':'módulos'} escolhidos:<ul>${mods.map(m=>`<li>${esc(m.label)}</li>`).join('')}</ul></div>`;
+        const url = waUrl ? waUrl.split('?')[0]+'?text='+encodeURIComponent(message()) : '#contato';
+        next.hidden = true;
+        o.insertAdjacentHTML('beforeend', `<a class="btn btn-mint" style="grid-column:1/-1;justify-content:center" id="mb-wa" href="${url}" ${isTouch?'':'target="_blank" rel="noopener"'}>Quero esse projeto no WhatsApp</a><button type="button" class="btn mb-back" style="grid-column:1/-1;justify-content:center" id="mb-reset">Montar outro</button>`);
+        el('mb-wa').addEventListener('click', () => track('whatsapp_click','monte'));
+        el('mb-reset').addEventListener('click', () => { st.step=0; st.need=null; st.biz=null; st.mods.clear(); render(); renderPreview(); el('mb-q').focus(); });
+      }
+      renderPreview();
+    }
+    el('mb-opts').addEventListener('click', e => {
+      const b = e.target.closest('.mb-opt'); if (!b) return;
+      const id = b.dataset.id;
+      if (st.step===0){ if (st.need!==id){ st.need=id; st.mods.clear(); } }
+      if (st.step===1){ if (st.biz!==id){ st.biz=id; st.mods = new Set((SUG[id]||[]).filter(m => avail().some(a => a.id===m))); } }
+      if (st.step===2){ st.mods.has(id) ? st.mods.delete(id) : st.mods.add(id); }
+      render();
+    });
+    el('mb-next').addEventListener('click', () => { if (st.step<3){ st.step++; render(); el('mb-q').focus({preventScroll:true}); } });
+    el('mb-back').addEventListener('click', () => { if (st.step>0){ st.step--; render(); el('mb-q').focus({preventScroll:true}); } });
+    render();
+  })();
 
   load().then(list => { projects = list; renderList(); route(); });
 })();
