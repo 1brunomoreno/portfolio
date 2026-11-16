@@ -1,9 +1,0 @@
-NÃO suba esta pasta no GitHub. Ela é só para o painel admin (brunomorenodev.com.br/admin).
-
-1) Gestão de Frota Institucional -> "Capa (tela principal)": envie capa-frota-indicadores.jpg e salve.
-
-2) Controle de Estoque de Consumíveis -> "O resultado":
-O sistema já está publicado e entra em operação em janeiro, preparado para cerca de 3.500 itens, 350 colaboradores e até 70 movimentações por dia. A partir daí, a equipe vai saber na hora o que precisa ser comprado, sem montar planilhas, e a gestão terá relatórios de consumo prontos para exportar.
-
-3) Site de portfólio -> "O resultado":
-Do registro do domínio ao site no ar, levou um dia. Hoje ele reúne cinco projetos, é o link da bio no Instagram e o cartão de visita que acompanha cada proposta.
