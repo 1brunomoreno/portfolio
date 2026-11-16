@@ -181,7 +181,7 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .foot-contact{display:flex;flex-direction:column;gap:10px}
 .soc{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:14px;background:var(--navy-2);border:1px solid var(--line);color:var(--paper);text-decoration:none;min-height:52px;transition:border-color .15s ease,transform .15s ease}
 .soc:hover{border-color:var(--mint);transform:translateY(-1px)}
-.soc img,.soc svg{width:26px;height:26px;flex:none;border-radius:6px;object-fit:contain}
+.soc img,.soc svg{width:26px;height:26px;flex:none;object-fit:contain}
 .soc svg{color:var(--mint)}
 .soc span{display:flex;flex-direction:column;line-height:1.25;font-size:15px;font-weight:600}
 .soc small{font-size:12px;font-weight:500;color:var(--mute)}
@@ -354,6 +354,10 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
 .gallery a{display:block}
 @media (max-width:720px){.gallery{grid-template-columns:1fr}}
 .case-tech{margin-top:40px}
+.case-cta{margin-top:40px;padding:32px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--navy);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.case-cta h3{margin:0;font-size:clamp(22px,2.6vw,28px);letter-spacing:-.025em;line-height:1.15}
+.case-cta p{margin:8px 0 0;color:var(--mute);font-size:16px}
+@media (max-width:540px){.case-cta{padding:26px 22px}.case-cta .btn{width:100%}}
 .empty{padding:40px;border-radius:var(--radius-lg);border:1.5px dashed var(--line-2);color:var(--text-2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
@@ -589,7 +593,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <div>
           <h2>Sobre mim</h2>
           <p>Sou desenvolvedor autodidata e, antes de programar, já vivia a rotina de operação: estoque, frota, abastecimento, pedidos. <strong>Por isso meus sistemas nascem do problema real, e não da tecnologia.</strong></p>
-          <p>Hoje desenvolvo e mantenho sistemas usados diariamente por instituições de ensino, oficinas e pequenas empresas. Gosto de entregar coisas simples de usar, que a equipe adota sem precisar de manual.</p>
+          <p>Hoje desenvolvo e mantenho sistemas usados diariamente em uma faculdade e um colégio, e levo essa experiência para oficinas, lojas e pequenas empresas. Gosto de entregar coisas simples de usar, que a equipe adota sem precisar de manual.</p>
           <p><a class="li-link" id="li2" href="https://www.linkedin.com/in/brunomorenodev" target="_blank" rel="noopener">Ver minha trajetória no LinkedIn →</a></p>
         </div>
       </div>
@@ -633,11 +637,11 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <span><small>WhatsApp</small>Orçamento sem compromisso</span>
       </a>
       <a class="soc" id="li" href="https://www.linkedin.com/in/brunomorenodev" target="_blank" rel="noopener">
-        <img src="assets/icons/linkedin.svg" alt="" data-png="assets/icons/linkedin.png" onerror="if(this.dataset.png){this.src=this.dataset.png;this.dataset.png=''}else{this.remove()}">
+        <img src="assets/icons/linkedin.png" alt="" width="26" height="26">
         <span><small>LinkedIn</small>/in/brunomorenodev</span>
       </a>
       <a class="soc" id="ig" href="https://instagram.com/brunomoreno.dev" target="_blank" rel="noopener">
-        <img src="assets/icons/instagram.svg" alt="" data-png="assets/icons/instagram.png" onerror="if(this.dataset.png){this.src=this.dataset.png;this.dataset.png=''}else{this.remove()}">
+        <img src="assets/icons/instagram.png" alt="" width="26" height="26">
         <span><small>Instagram</small>@brunomoreno.dev</span>
       </a>
     </div>
@@ -658,7 +662,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   <div class="case-body" id="case-body"></div>
 </dialog>
 
-<script src="assets/config.js?v=3"></script>
+<script src="assets/config.js?v=4"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
@@ -674,13 +678,13 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   document.querySelectorAll(".js-wa").forEach(a => {
     if (!waUrl || /X/.test(C.WHATSAPP)) { console.warn("WhatsApp não configurado em assets/config.js"); return; }
     a.href = waUrl;
-    a.addEventListener("click", () => track("whatsapp_click", a.closest("section")?.id || "topo"));
+    a.addEventListener("click", () => track("whatsapp_click", a.closest("footer") ? "rodape" : (a.closest("section")?.id || "topo")));
     // No celular abre na mesma aba: o navegador do Instagram e alguns celulares bloqueiam nova aba.
     if (!isTouch) { a.target = "_blank"; a.rel = "noopener"; } else { a.removeAttribute("target"); }
   });
   if (C.LINKEDIN){ $("#li").href=$("#li2").href="https://www.linkedin.com/in/"+C.LINKEDIN; }
   if (C.INSTAGRAM){ $("#ig").href="https://instagram.com/"+C.INSTAGRAM; }
-  if (C.PORTRAIT_URL){ $("#portrait").innerHTML = '<img src="'+esc(C.PORTRAIT_URL)+'" alt="Foto de Bruno Moreno">'; }
+  if (C.PORTRAIT_URL){ $("#portrait").innerHTML = '<img src="'+esc(C.PORTRAIT_URL)+'" alt="Foto de Bruno Moreno" width="800" height="1000" loading="lazy">'; }
 
   let projects = [];
   let filter = "todos";
@@ -730,8 +734,18 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       return h.slice(0, 40);
     }catch(e){ return "direto"; }
   })();
+  // Não contar as visitas do próprio Bruno: abra o site uma vez com ?notrack=1 em cada aparelho
+  // (ou faça login no admin). Para voltar a contar: ?notrack=0
+  let noTrack = false;
+  try{
+    const nt = new URLSearchParams(location.search).get("notrack");
+    if (nt === "1") localStorage.setItem("bm_notrack", "1");
+    if (nt === "0") localStorage.removeItem("bm_notrack");
+    noTrack = localStorage.getItem("bm_notrack") === "1";
+    if (nt !== null) history.replaceState(null, "", location.pathname + location.hash);
+  }catch(e){}
   function track(type, slug){
-    if (!sb) return;
+    if (!sb || noTrack) return;
     try{ sb.from("events").insert({ type, slug: slug || null, source, device }).then(() => {}, () => {}); }catch(e){}
   }
   try{
@@ -762,6 +776,12 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       </article>`).join("");
   }
 
+  const WA_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>';
+  function caseWa(p){
+    if (!waUrl) return "#contato";
+    const what = (p.category || "sistema") === "site" ? "um site" : "um sistema";
+    return waUrl.split("?")[0] + "?text=" + encodeURIComponent(`Olá, Bruno! Vi o projeto "${p.title}" no seu site e quero ${what} parecido para o meu negócio.`);
+  }
   const dlg = $("#case");
   function openCase(slug){
     const p = projects.find(x => x.slug === slug);
@@ -789,12 +809,17 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <div><h3>O resultado</h3><p>${esc(p.result)}</p></div>
       </div>
       <div class="gallery">${imgs}</div>
-      <div class="case-tech">${chips(p.tech)}</div>`;
+      <div class="case-tech">${chips(p.tech)}</div>
+      <div class="case-cta">
+        <div><h3>${(p.category || "sistema") === "site" ? "Quer um site assim para o seu negócio?" : "Quer um sistema assim para o seu negócio?"}</h3><p>Me conta como funciona hoje. A primeira conversa não tem custo.</p></div>
+        <a class="btn btn-mint" id="case-wa" href="${esc(caseWa(p))}" ${isTouch ? "" : 'target="_blank" rel="noopener"'}>${WA_ICON}Conversar no WhatsApp</a>
+      </div>`;
+    const cw = $("#case-wa"); if (cw) cw.addEventListener("click", () => track("whatsapp_click", "projeto:" + p.slug));
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
   }
   function closeCase(){ if (dlg.open) dlg.close(); }
-  $("#case-close").addEventListener("click", () => { history.pushState("", document.title, location.pathname + location.search + "#projetos"); closeCase(); });
+  $("#case-close").addEventListener("click", () => { history.replaceState(null, document.title, location.pathname + location.search + "#projetos"); closeCase(); });
   dlg.addEventListener("cancel", e => { e.preventDefault(); $("#case-close").click(); });
   dlg.addEventListener("click", e => { if (e.target === dlg) $("#case-close").click(); });
 
@@ -903,11 +928,13 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         return `<div class="mb-tile ${m.k}" data-id="${m.id}" style="${have.has(m.id)?'animation:none':''}"><div class="ti">${I(ICON[m.id])}${esc(m.label)}</div>${deco}</div>`;
       }).join('');
     }
+    const FOR = { oficina:'a minha oficina', restaurante:'o meu restaurante', loja:'a minha loja', instituicao:'a minha instituição', servicos:'a minha empresa de serviços', outro:'o meu negócio' };
+    const low = s => s.toLowerCase().replace(/whatsapp/g, 'WhatsApp').replace(/google/g, 'Google');
     function message(){
       const what = st.need==='site' ? 'um site' : st.need==='sistema' ? 'um sistema' : 'um site e um sistema';
-      const mods = MODS.filter(m => st.mods.has(m.id)).map(m => m.label.toLowerCase());
+      const mods = MODS.filter(m => st.mods.has(m.id)).map(m => low(m.label));
       const list = mods.length>1 ? mods.slice(0,-1).join(', ')+' e '+mods.slice(-1) : mods.join('');
-      return `Olá, Bruno! Montei meu projeto no seu site: ${what} para ${nameOf(BIZ,st.biz).toLowerCase()}, com ${list}. Quero conversar sobre ele.`;
+      return `Olá, Bruno! Montei meu projeto no seu site: ${what} para ${FOR[st.biz] || 'o meu negócio'}, com ${list}. Quero conversar sobre ele.`;
     }
     function render(){
       const steps = ['O que você precisa?','Qual é o seu negócio?','O que não pode faltar?','Seu projeto está pronto!'];
@@ -929,12 +956,12 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         el('mb-hint').textContent = 'Agora é só me mandar. Eu respondo com as próximas etapas, sem compromisso.';
         const mods = MODS.filter(m => st.mods.has(m.id));
         const what = st.need==='site' ? 'Site' : st.need==='sistema' ? 'Sistema' : 'Site + sistema';
-        o.innerHTML = `<div class="mb-sum"><strong>${what} para ${esc(nameOf(BIZ,st.biz).toLowerCase())}</strong>${mods.length} ${mods.length===1?'módulo':'módulos'} escolhidos:<ul>${mods.map(m=>`<li>${esc(m.label)}</li>`).join('')}</ul></div>`;
+        o.innerHTML = `<div class="mb-sum"><strong>${what} para ${(FOR[st.biz] || 'o meu negócio').replace(/\bminha\b/,'sua').replace(/\bmeu\b/,'seu')}</strong>${mods.length} ${mods.length===1?'módulo':'módulos'} escolhidos:<ul>${mods.map(m=>`<li>${esc(m.label)}</li>`).join('')}</ul></div>`;
         const url = waUrl ? waUrl.split('?')[0]+'?text='+encodeURIComponent(message()) : '#contato';
         next.hidden = true;
         o.insertAdjacentHTML('beforeend', `<a class="btn btn-mint" style="grid-column:1/-1;justify-content:center" id="mb-wa" href="${url}" ${isTouch?'':'target="_blank" rel="noopener"'}>Quero esse projeto no WhatsApp</a><button type="button" class="btn mb-back" style="grid-column:1/-1;justify-content:center" id="mb-reset">Montar outro</button>`);
         el('mb-wa').addEventListener('click', () => track('whatsapp_click','monte'));
-        el('mb-reset').addEventListener('click', () => { st.step=0; st.need=null; st.biz=null; st.mods.clear(); render(); renderPreview(); el('mb-q').focus(); });
+        el('mb-reset').addEventListener('click', () => { st.step=0; st.need=null; st.biz=null; st.mods.clear(); render(); renderPreview(); toPanel(); });
       }
       renderPreview();
     }
@@ -946,8 +973,14 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       if (st.step===2){ st.mods.has(id) ? st.mods.delete(id) : st.mods.add(id); }
       render();
     });
-    el('mb-next').addEventListener('click', () => { if (st.step<3){ st.step++; render(); el('mb-q').focus({preventScroll:true}); } });
-    el('mb-back').addEventListener('click', () => { if (st.step>0){ st.step--; render(); el('mb-q').focus({preventScroll:true}); } });
+    // Ao trocar de passo, volta para o topo do painel (no celular a lista é longa e o botão final ficava fora da tela)
+    const toPanel = () => {
+      el('mb-q').focus({preventScroll:true});
+      const panel = document.querySelector('.mb-panel');
+      if (panel.getBoundingClientRect().top < 76) panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    };
+    el('mb-next').addEventListener('click', () => { if (st.step<3){ st.step++; render(); toPanel(); } });
+    el('mb-back').addEventListener('click', () => { if (st.step>0){ st.step--; render(); toPanel(); } });
     render();
   })();
 

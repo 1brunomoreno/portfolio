@@ -1,7 +1,6 @@
-Coloque aqui os ícones oficiais, baixados dos kits de marca das empresas:
+Ícones oficiais usados no rodapé do site (baixados dos kits de marca do LinkedIn e da Meta):
 
-- linkedin.svg  (ou linkedin.png)
-- instagram.svg (ou instagram.png)
+- linkedin.png  (LinkedIn "In-Bug", reduzido para 78 px de altura)
+- instagram.png (Instagram Glyph Gradient, reduzido para 78 x 78 px)
 
-Enquanto os arquivos não estiverem aqui, o rodapé mostra só o nome da rede e o seu perfil,
-sem nenhum espaço vazio ou ícone quebrado.
+Não altere cores nem proporções: as regras de marca das duas empresas não permitem.
