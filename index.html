@@ -150,7 +150,8 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .dark{background:var(--navy);color:var(--paper)}
 .about{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:64px;align-items:center}
 .portrait{aspect-ratio:4/5;border-radius:var(--radius-lg);background:var(--navy-2);display:grid;place-items:center;overflow:hidden}
-.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.portrait{box-shadow:0 30px 70px rgba(0,0,0,.45),0 0 0 1px rgba(61,220,151,.25)}
 .portrait .mono{display:flex;align-items:baseline;gap:8px;font-weight:700;font-size:110px;letter-spacing:-.07em;color:var(--paper)}
 .portrait .mono i{width:20px;height:25px;border-radius:3px;background:var(--mint);display:block}
 .about h2{margin-bottom:22px}

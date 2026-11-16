@@ -8,5 +8,6 @@ window.SITE_CONFIG = {
   WHATSAPP_MSG: "Olá, Bruno! Vi seu site e quero conversar sobre um sistema para o meu negócio.",
   INSTAGRAM: "brunomoreno.dev",
   LINKEDIN: "brunomorenodev",
+  PORTRAIT_URL: "img/bruno.jpg",
   STORAGE_BUCKET: "portfolio"
 };
