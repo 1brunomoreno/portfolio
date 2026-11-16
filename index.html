@@ -16,6 +16,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B1424">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://www.brunomorenodev.com.br/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quanto tempo leva pra ficar pronto?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas."}}, {"@type": "Question", "name": "Como funciona o orçamento?", "acceptedAnswer": {"@type": "Answer", "text": "Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. A primeira conversa não tem custo."}}, {"@type": "Question", "name": "Preciso entender de tecnologia?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento pra equipe."}}, {"@type": "Question", "name": "Quem cuida do sistema depois da entrega?", "acceptedAnswer": {"@type": "Answer", "text": "Eu continuo por perto pra suporte, ajustes e melhorias. Dá pra combinar um acompanhamento mensal."}}, {"@type": "Question", "name": "Onde ficam os meus dados?", "acceptedAnswer": {"@type": "Answer", "text": "Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus."}}, {"@type": "Question", "name": "Funciona no celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada."}}]}</script>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"brunomoreno.dev","url":"https://www.brunomorenodev.com.br/","image":"https://www.brunomorenodev.com.br/img/og.jpg","description":"Sites e sistemas web sob medida para empresas e instituições que querem sair do papel e da planilha.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"São Paulo","addressRegion":"SP","addressCountry":"BR"},"founder":{"@type":"Person","name":"Bruno Moreno","jobTitle":"Desenvolvedor de sites e sistemas","sameAs":["https://www.linkedin.com/in/brunomorenodev","https://instagram.com/brunomoreno.dev"]},"sameAs":["https://www.linkedin.com/in/brunomorenodev","https://instagram.com/brunomoreno.dev"],"knowsAbout":["Desenvolvimento de sites","Sistemas sob medida","Automação de processos","Inteligência artificial","Gestão de estoque"]}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -180,6 +187,26 @@ h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em;margin
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;padding-bottom:32px;border-top:1px solid var(--line);font-size:14px}
 .foot-bottom a{color:var(--mute);text-decoration:none}.foot-bottom a:hover{color:var(--paper)}
 @media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:36px;padding-top:48px}}
+/* Destaques, depoimentos e FAQ */
+.trust{background:var(--card);border-bottom:1px solid var(--line-2)}
+.trust-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:28px;padding-bottom:28px}
+.trust-row div{display:flex;flex-direction:column;gap:4px}
+.trust-row b{font-size:26px;letter-spacing:-.03em;color:var(--text)}
+.trust-row span{font-size:14px;color:var(--text-2)}
+@media (max-width:820px){.trust-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+.testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.testi figure{margin:0;background:var(--card);border:1px solid var(--line-2);border-radius:var(--radius-lg);padding:28px}
+.testi blockquote{margin:0;font-size:17px;line-height:1.55}
+.testi figcaption{margin-top:16px;font-size:14px;color:var(--text-2)}
+.testi figcaption b{display:block;color:var(--text);font-size:15px}
+@media (max-width:900px){.testi{grid-template-columns:1fr}}
+.faq{display:grid;gap:12px;max-width:860px}
+.faq-i{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:0 22px}
+.faq-i summary{cursor:pointer;list-style:none;padding:20px 30px 20px 0;font-weight:600;font-size:17px;position:relative}
+.faq-i summary::-webkit-details-marker{display:none}
+.faq-i summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:24px;color:var(--mint-ink);transition:transform .2s ease}
+.faq-i[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq-i p{margin:0 0 20px;color:var(--text-2)}
 /* Do papel ao sistema */
 .st{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:start}
 .st-visual{position:sticky;top:110px;height:calc(100vh - 160px);max-height:620px;display:flex;align-items:center;justify-content:center}
@@ -347,7 +374,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <li><a href="#sobre">Sobre</a></li>
       </ul>
     </nav>
-    <a class="btn btn-mint btn-sm js-wa" href="#contato">Fale comigo</a>
+    <a class="btn btn-mint btn-sm js-wa" href="https://wa.me/5511962528030?text=Ol%C3%A1%2C%20Bruno%21%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Fale comigo</a>
   </div>
 </header>
 
@@ -358,7 +385,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <h1>Sites e sistemas sob medida que tiram seu negócio do papel.</h1>
         <p class="lead">Eu sou o <strong>Bruno Moreno</strong>. Crio sites e sistemas web para empresas e instituições que querem crescer sem depender de planilha, caderno e WhatsApp.</p>
         <div class="actions">
-          <a class="btn btn-mint js-wa" href="#contato">
+          <a class="btn btn-mint js-wa" href="https://wa.me/5511962528030?text=Ol%C3%A1%2C%20Bruno%21%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
             Conversar no WhatsApp
           </a>
@@ -376,6 +403,15 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <figcaption class="cap-before" aria-hidden="true"><b>Antes:</b> controle em papel</figcaption>
         <figcaption class="cap-after" aria-hidden="true"><b>Depois:</b> painel em tempo real</figcaption>
       </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Destaques">
+    <div class="wrap trust-row">
+      <div><b>4</b><span>sistemas desenvolvidos</span></div>
+      <div><b>100%</b><span>sob medida, sem modelo pronto</span></div>
+      <div><b>1ª conversa</b><span>sem custo e sem compromisso</span></div>
+      <div><b>Suporte</b><span>depois da entrega</span></div>
     </div>
   </section>
 
@@ -416,7 +452,58 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <button type="button" class="filter" data-f="sistema" aria-pressed="false">Sistemas</button>
         <button type="button" class="filter" data-f="site" aria-pressed="false">Sites</button>
       </div>
-      <div class="projects" id="project-list" aria-live="polite"></div>
+      <div class="projects" id="project-list" aria-live="polite">
+      <article class="project">
+        <div class="shot"><img src="img/frota/hero-painel.jpg" alt="Tela do projeto Gestão de Frota Institucional" loading="lazy"></div>
+        <div class="body">
+          <p class="client">UniFECAF e Colégio SER</p>
+          <h3>Gestão de Frota Institucional</h3>
+          <p>Sistema de reservas, checklists e indicadores para a frota de veículos. Substituiu o controle em papel por um painel em tempo real, usado no dia a dia por 14 departamentos.</p>
+          <ul class="chips"><li>React</li><li>Supabase</li><li>PostgreSQL</li><li>Vercel</li></ul>
+          <a class="btn btn-sm" href="#gestao-de-frota">Ver o projeto completo</a>
+        </div>
+      </article>
+      <article class="project">
+        <div class="shot"><img src="img/abastecimento/inicio.jpg" alt="Tela do projeto Controle de Abastecimento" loading="lazy"></div>
+        <div class="body">
+          <p class="client">Almoxarifado UniFECAF e Colégio SER</p>
+          <h3>Controle de Abastecimento</h3>
+          <p>Sistema para lançar e acompanhar o abastecimento de itens de consumo, como papel, sabonete e café, em 16 locais. Substituiu uma planilha com uma aba por produto e um bloco por andar.</p>
+          <ul class="chips"><li>React</li><li>Supabase</li><li>PostgreSQL</li><li>Vercel</li></ul>
+          <a class="btn btn-sm" href="#controle-de-abastecimento">Ver o projeto completo</a>
+        </div>
+      </article>
+      <article class="project">
+        <div class="shot"><img src="img/estoque/inicio.jpg" alt="Tela do projeto Controle de Estoque de Consumíveis" loading="lazy"></div>
+        <div class="body">
+          <p class="client">Almoxarifado UniFECAF e Colégio SER (em implantação)</p>
+          <h3>Controle de Estoque de Consumíveis</h3>
+          <p>Sistema de entradas, saídas e posição de estoque, com avisos automáticos de reposição e relatórios por pessoa, departamento e produto. Criado para substituir um sistema lento, instável e sem relatórios.</p>
+          <ul class="chips"><li>Supabase</li><li>PostgreSQL</li><li>Cloudflare</li></ul>
+          <a class="btn btn-sm" href="#controle-de-estoque">Ver o projeto completo</a>
+        </div>
+      </article>
+      <article class="project">
+        <div class="shot"><img src="img/oficina/nova-os.jpg" alt="Tela do projeto WATTS OS: gestão de oficina" loading="lazy"></div>
+        <div class="body">
+          <p class="client">WATTS Soluções Automotivas (em implantação)</p>
+          <h3>WATTS OS: gestão de oficina</h3>
+          <p>Sistema de ordens de serviço para oficina mecânica, com aprovação, controle de técnicos e vendedores, relatórios de faturamento e cálculo automático de comissões.</p>
+          <ul class="chips"><li>React</li><li>Supabase</li><li>PostgreSQL</li><li>Vercel</li></ul>
+          <a class="btn btn-sm" href="#watts-oficina">Ver o projeto completo</a>
+        </div>
+      </article>
+      <article class="project">
+        <div class="shot"><img src="img/site/inicio.jpg" alt="Tela do projeto Site de portfólio" loading="lazy"></div>
+        <div class="body">
+          <p class="client">brunomorenodev.com.br (projeto próprio)</p>
+          <h3>Site de portfólio</h3>
+          <p>Site de portfólio com identidade visual própria, domínio .com.br e página para cada projeto. Feito para apresentar o trabalho e levar o visitante direto para uma conversa no WhatsApp.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Supabase</li><li>Vercel</li></ul>
+          <a class="btn btn-sm" href="#site-brunomorenodev">Ver o projeto completo</a>
+        </div>
+      </article>
+      </div>
     </div>
   </section>
 
@@ -478,11 +565,25 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     </div>
   </section>
 
+  <section class="block" id="depoimentos" hidden style="padding-top:24px">
+    <div class="wrap">
+      <div class="head"><h2>Quem usa, recomenda</h2><p>O que dizem as pessoas que usam os sistemas no dia a dia.</p></div>
+      <div class="testi" id="testi-list"></div>
+    </div>
+  </section>
+
+  <section class="block" id="perguntas" style="padding-top:24px">
+    <div class="wrap">
+      <div class="head"><h2>Perguntas frequentes</h2><p>As dúvidas que mais aparecem antes da primeira conversa.</p></div>
+      <div class="faq"><details class="faq-i"><summary>Quanto tempo leva pra ficar pronto?</summary><p>Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas.</p></details><details class="faq-i"><summary>Como funciona o orçamento?</summary><p>Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. A primeira conversa não tem custo.</p></details><details class="faq-i"><summary>Preciso entender de tecnologia?</summary><p>Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento pra equipe.</p></details><details class="faq-i"><summary>Quem cuida do sistema depois da entrega?</summary><p>Eu continuo por perto pra suporte, ajustes e melhorias. Dá pra combinar um acompanhamento mensal.</p></details><details class="faq-i"><summary>Onde ficam os meus dados?</summary><p>Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus.</p></details><details class="faq-i"><summary>Funciona no celular?</summary><p>Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada.</p></details></div>
+    </div>
+  </section>
+
   <section class="block dark" id="sobre">
     <div class="wrap">
       <div class="about">
         <div class="portrait" id="portrait">
-          <span class="mono" aria-hidden="true">bm<i></i></span>
+          <img src="img/bruno.jpg" alt="Foto de Bruno Moreno" width="800" height="1000" loading="lazy">
         </div>
         <div>
           <h2>Sobre mim</h2>
@@ -497,7 +598,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
           <h2>Seu negócio ainda depende de papel ou planilha?</h2>
           <p>Me conta como funciona hoje. A primeira conversa não tem custo.</p>
         </div>
-        <a class="btn btn-mint js-wa" href="#contato">
+        <a class="btn btn-mint js-wa" href="https://wa.me/5511962528030?text=Ol%C3%A1%2C%20Bruno%21%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
           Conversar no WhatsApp
         </a>
@@ -520,11 +621,13 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       <a href="#servicos">Serviços</a>
       <a href="#projetos">Projetos</a>
       <a href="#como-trabalho">Como trabalho</a>
+      <a href="#monte">Monte seu projeto</a>
+      <a href="#perguntas">Perguntas frequentes</a>
       <a href="#sobre">Sobre</a>
     </nav>
     <div class="foot-contact">
       <h2>Contato</h2>
-      <a class="soc js-wa" href="#contato">
+      <a class="soc js-wa" href="https://wa.me/5511962528030?text=Ol%C3%A1%2C%20Bruno%21%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
         <span><small>WhatsApp</small>Orçamento sem compromisso</span>
       </a>
@@ -539,7 +642,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     </div>
   </div>
   <div class="wrap foot-bottom">
-    <span>© <span id="year">2026</span> Bruno Moreno. Todos os direitos reservados.</span>
+    <span>© <span id="year">2026</span> Bruno Moreno. Todos os direitos reservados. · <a href="privacidade.html">Privacidade</a></span>
     <a href="#inicio">Voltar ao topo ↑</a>
   </div>
 </footer>
@@ -572,7 +675,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     a.href = waUrl;
     a.addEventListener("click", () => track("whatsapp_click", a.closest("section")?.id || "topo"));
     // No celular abre na mesma aba: o navegador do Instagram e alguns celulares bloqueiam nova aba.
-    if (!isTouch) { a.target = "_blank"; a.rel = "noopener"; }
+    if (!isTouch) { a.target = "_blank"; a.rel = "noopener"; } else { a.removeAttribute("target"); }
   });
   if (C.LINKEDIN){ $("#li").href=$("#li2").href="https://www.linkedin.com/in/"+C.LINKEDIN; }
   if (C.INSTAGRAM){ $("#ig").href="https://instagram.com/"+C.INSTAGRAM; }
@@ -701,6 +804,15 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   window.addEventListener("hashchange", route);
 
 
+
+
+  // ---------- Depoimentos (aparecem quando houver no config) ----------
+  (function(){
+    const T = C.TESTIMONIALS || [];
+    if (!T.length) return;
+    document.getElementById('testi-list').innerHTML = T.map(t => `<figure><blockquote>“${esc(t.text)}”</blockquote><figcaption><b>${esc(t.name)}</b>${esc(t.role||'')}</figcaption></figure>`).join('');
+    document.getElementById('depoimentos').hidden = false;
+  })();
 
   // ---------- Do papel ao sistema ----------
   (function(){

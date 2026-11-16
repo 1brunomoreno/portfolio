@@ -9,5 +9,8 @@ window.SITE_CONFIG = {
   INSTAGRAM: "brunomoreno.dev",
   LINKEDIN: "brunomorenodev",
   PORTRAIT_URL: "img/bruno.jpg",
-  STORAGE_BUCKET: "portfolio"
+  STORAGE_BUCKET: "portfolio",
+  // Depoimentos: a seção só aparece quando houver pelo menos um. Exemplo:
+  // { text: "O sistema acabou com a planilha de papel.", name: "Nome da pessoa", role: "Cargo, Empresa" }
+  TESTIMONIALS: []
 };
