@@ -21,7 +21,7 @@
       "PostgreSQL",
       "Vercel"
     ],
-    "cover_url": "img/frota/hero-painel.jpg",
+    "cover_url": "img/frota/indicadores.jpg",
     "before_url": "img/frota/antes-planilha.jpg",
     "before_caption": "Antes: planilha de papel preenchida à mão a cada saída.",
     "images": [
@@ -111,7 +111,7 @@
       "Cadastros completos de produtos, categorias, marcas, unidades, pessoas, departamentos, locais e fornecedores",
       "Perfis de acesso para administradores, quem só registra movimentações e quem só consulta, com rastreabilidade de cada lançamento"
     ],
-    "result": "O sistema já está publicado e entra em operação em janeiro, pensado para cerca de 3.500 itens, 350 colaboradores e até 70 movimentações por dia. Desde o primeiro dia, a equipe sabe o que precisa ser comprado sem montar planilhas, e a gestão tem relatórios de consumo prontos para exportar.",
+    "result": "O sistema já está publicado e entra em operação em janeiro, preparado para cerca de 3.500 itens, 350 colaboradores e até 70 movimentações por dia. A partir daí, a equipe vai saber na hora o que precisa ser comprado, sem montar planilhas, e a gestão terá relatórios de consumo prontos para exportar.",
     "tech": [
       "Supabase",
       "PostgreSQL",
@@ -201,7 +201,7 @@
       "Painel administrativo para cadastrar projetos e subir imagens sem mexer no código",
       "Hospedagem na Vercel, com atualização automática a cada mudança"
     ],
-    "result": "Do registro do domínio ao site no ar, com quatro projetos publicados, levou um dia. Hoje ele é o link da bio no Instagram e o cartão de visita que acompanha cada proposta.",
+    "result": "Do registro do domínio ao site no ar, levou um dia. Hoje ele reúne cinco projetos, é o link da bio no Instagram e o cartão de visita que acompanha cada proposta.",
     "tech": [
       "HTML",
       "CSS",
