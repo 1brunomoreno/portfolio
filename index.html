@@ -17,7 +17,9 @@
 <meta name="theme-color" content="#0B1424">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://www.brunomorenodev.com.br/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quanto tempo leva para ficar pronto?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas."}}, {"@type": "Question", "name": "Como funciona o orçamento?", "acceptedAnswer": {"@type": "Answer", "text": "Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. O orçamento é sem compromisso."}}, {"@type": "Question", "name": "Preciso entender de tecnologia?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento para equipe."}}, {"@type": "Question", "name": "Quem cuida do sistema depois da entrega?", "acceptedAnswer": {"@type": "Answer", "text": "Eu continuo por perto para suporte, ajustes e melhorias. Dá para combinar um acompanhamento mensal."}}, {"@type": "Question", "name": "Onde ficam os meus dados?", "acceptedAnswer": {"@type": "Answer", "text": "Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus."}}, {"@type": "Question", "name": "Funciona no celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada."}}]}</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quanto tempo leva para ficar pronto?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas."}}, {"@type": "Question", "name": "Como funciona o orçamento?", "acceptedAnswer": {"@type": "Answer", "text": "Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. O orçamento é sem compromisso."}}, {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do que o seu negócio precisa, mas para você ter uma referência: sites a partir de R$ 1.500 e sistemas sob medida a partir de R$ 4.500. A manutenção mensal é opcional, a partir de R$ 80. O valor exato vem na proposta, por escrito, depois da nossa conversa."}}, {"@type": "Question", "name": "Você atende fora de São Paulo?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Todo o trabalho pode ser feito online, por videochamada e WhatsApp, para qualquer cidade do Brasil. Em São Paulo e região, também dá para conversar pessoalmente."}}, {"@type": "Question", "name": "Preciso entender de tecnologia?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento para equipe."}}, {"@type": "Question", "name": "Quem cuida do sistema depois da entrega?", "acceptedAnswer": {"@type": "Answer", "text": "Eu continuo por perto para suporte, ajustes e melhorias. Dá para combinar um acompanhamento mensal."}}, {"@type": "Question", "name": "Onde ficam os meus dados?", "acceptedAnswer": {"@type": "Answer", "text": "Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus."}}, {"@type": "Question", "name": "Funciona no celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada."}}]}
+</script>
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png">
@@ -139,7 +141,8 @@ h2{text-wrap:balance;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spac
 .projects{display:grid;gap:28px}
 .project{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);background:var(--card);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line-2)}
 .project .shot{background:var(--navy);padding:36px 0 0 36px;display:flex;align-items:flex-end;overflow:hidden;min-height:340px}
-.project .shot img{border-radius:12px 0 0 0;box-shadow:0 20px 50px rgba(0,0,0,.4);width:100%;object-fit:cover;object-position:top left;max-height:420px}
+.project .shot picture,.gallery picture,.ba picture,.hero picture{display:contents}
+.project .shot img{height:auto;border-radius:12px 0 0 0;box-shadow:0 20px 50px rgba(0,0,0,.4);width:100%;object-fit:cover;object-position:top left;max-height:420px}
 .project .body{min-width:0;padding:40px 40px 36px;display:flex;flex-direction:column;gap:16px}
 .client{font-size:15px;color:var(--text-2);margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.01em;padding:3px 10px;border-radius:999px;background:rgba(245,184,61,.18);color:#6E4A00}
@@ -453,10 +456,10 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       </div>
       <div class="stage" aria-label="Exemplo de antes e depois">
         <figure class="sheet">
-          <img src="img/frota/antes-planilha.jpg" srcset="img/frota/antes-planilha-600.jpg 600w, img/frota/antes-planilha.jpg 987w" sizes="(max-width: 900px) 62vw, 380px" alt="Planilha de papel usada para controlar a saída dos veículos, preenchida à mão" width="987" height="680">
+          <picture><source type="image/webp" srcset="img/frota/antes-planilha-600.webp 600w, img/frota/antes-planilha-1200.webp 987w" sizes="(max-width: 900px) 62vw, 380px"><img src="img/frota/antes-planilha.jpg" srcset="img/frota/antes-planilha-600.jpg 600w, img/frota/antes-planilha.jpg 987w" sizes="(max-width: 900px) 62vw, 380px" alt="Planilha de papel usada para controlar a saída dos veículos, preenchida à mão" width="987" height="680"></picture>
         </figure>
         <figure class="screen">
-          <img src="img/frota/hero-painel.jpg" srcset="img/frota/hero-painel-600.jpg 600w, img/frota/hero-painel.jpg 857w" sizes="(max-width: 900px) 80vw, 480px" alt="Painel do sistema de gestão de frota mostrando os veículos em uso e livres no dia" width="857" height="602" fetchpriority="high">
+          <picture><source type="image/webp" srcset="img/frota/hero-painel-600.webp 600w, img/frota/hero-painel-1200.webp 857w" sizes="(max-width: 900px) 80vw, 480px"><img src="img/frota/hero-painel.jpg" srcset="img/frota/hero-painel-600.jpg 600w, img/frota/hero-painel.jpg 857w" sizes="(max-width: 900px) 80vw, 480px" alt="Painel do sistema de gestão de frota mostrando os veículos em uso e livres no dia" width="857" height="602" fetchpriority="high"></picture>
         </figure>
         <p class="sr">Antes, o controle era em papel. Depois, um painel em tempo real.</p>
         <figcaption class="cap-before" aria-hidden="true"><b>Antes:</b> controle em papel</figcaption>
@@ -513,7 +516,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       </div>
       <div class="projects" id="project-list" aria-live="polite">
       <article class="project">
-        <div class="shot"><img src="img/frota/indicadores.jpg" alt="Tela do projeto Gestão de Frota Institucional" loading="lazy"></div>
+        <div class="shot"><picture><source type="image/webp" srcset="img/frota/indicadores-600.webp 600w, img/frota/indicadores-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 640px"><img src="img/frota/indicadores.jpg" alt="Tela do projeto Gestão de Frota Institucional" width="845" height="566" loading="lazy"></picture></div>
         <div class="body">
           <p class="client">UniFECAF e Colégio SER</p>
           <h3>Gestão de Frota Institucional</h3>
@@ -523,7 +526,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         </div>
       </article>
       <article class="project">
-        <div class="shot"><img src="img/abastecimento/inicio.jpg" alt="Tela do projeto Controle de Abastecimento" loading="lazy"></div>
+        <div class="shot"><picture><source type="image/webp" srcset="img/abastecimento/inicio-600.webp 600w, img/abastecimento/inicio-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 640px"><img src="img/abastecimento/inicio.jpg" alt="Tela do projeto Controle de Abastecimento" width="867" height="834" loading="lazy"></picture></div>
         <div class="body">
           <p class="client">Almoxarifado UniFECAF e Colégio SER</p>
           <h3>Controle de Abastecimento</h3>
@@ -533,7 +536,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         </div>
       </article>
       <article class="project">
-        <div class="shot"><img src="img/estoque/inicio.jpg" alt="Tela do projeto Controle de Estoque de Consumíveis" loading="lazy"></div>
+        <div class="shot"><picture><source type="image/webp" srcset="img/estoque/inicio-600.webp 600w, img/estoque/inicio-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 640px"><img src="img/estoque/inicio.jpg" alt="Tela do projeto Controle de Estoque de Consumíveis" width="1255" height="840" loading="lazy"></picture></div>
         <div class="body">
           <p class="client">Almoxarifado UniFECAF e Colégio SER<span class="badge">Em implantação</span></p>
           <h3>Controle de Estoque de Consumíveis</h3>
@@ -543,7 +546,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         </div>
       </article>
       <article class="project">
-        <div class="shot"><img src="img/oficina/nova-os.jpg" alt="Tela do projeto WATTS OS: gestão de oficina" loading="lazy"></div>
+        <div class="shot"><picture><source type="image/webp" srcset="img/oficina/nova-os-600.webp 600w, img/oficina/nova-os-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 640px"><img src="img/oficina/nova-os.jpg" alt="Tela do projeto WATTS OS: gestão de oficina" width="1307" height="768" loading="lazy"></picture></div>
         <div class="body">
           <p class="client">WATTS Soluções Automotivas<span class="badge">Em implantação</span></p>
           <h3>WATTS OS: gestão de oficina</h3>
@@ -553,7 +556,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         </div>
       </article>
       <article class="project">
-        <div class="shot"><img src="img/site/inicio.jpg" alt="Tela do projeto Site de portfólio" loading="lazy"></div>
+        <div class="shot"><picture><source type="image/webp" srcset="img/site/inicio-600.webp 600w, img/site/inicio-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 640px"><img src="img/site/inicio.jpg" alt="Tela do projeto Site de portfólio" width="1400" height="831" loading="lazy"></picture></div>
         <div class="body">
           <p class="client">brunomorenodev.com.br (projeto próprio)</p>
           <h3>Site de portfólio</h3>
@@ -574,7 +577,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         <div class="why-sig"><img src="img/bruno-moreno-nobre.jpg" alt="" width="56" height="56" loading="lazy"><div><b>Bruno Moreno Nobre</b><span>Desenvolvedor · brunomoreno.dev</span></div></div>
       </div>
       <ol class="why-list">
-        <li><span>01</span><div><h3>Conheço a operação</h3><p>Mais de 10 anos em compras, estoque e gestão. Entendo o problema antes de escrever a primeira linha de código.</p></div></li>
+        <li><span>01</span><div><h3>Conheço a operação</h3><p>Anos em compras, estoque e gestão me ensinaram a entender o problema antes de escrever a primeira linha de código.</p></div></li>
         <li><span>02</span><div><h3>Feito sob medida</h3><p>Nada de sistema genérico: ele se adapta à sua rotina, não o contrário.</p></div></li>
         <li><span>03</span><div><h3>Linguagem simples</h3><p>Sem termos técnicos. Você acompanha e aprova cada etapa.</p></div></li>
         <li><span>04</span><div><h3>Suporte depois da entrega</h3><p>Treinamento da equipe, ajustes e melhorias contínuas.</p></div></li>
@@ -586,7 +589,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     <div class="wrap">
       <div class="head">
         <h2>Como trabalho</h2>
-        <p>Do papel ao sistema, em 4 etapas. Sem termos técnicos e com você acompanhando cada uma.</p>
+        <p>Do papel ao sistema, em 4 etapas, com você acompanhando cada uma.</p>
       </div>
       <div class="st">
         <div class="st-visual" aria-hidden="true">
@@ -602,7 +605,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
           </div>
         </div>
         <ol class="st-steps">
-          <li class="is-on" data-s="0"><span class="st-n">01</span><h3>Conversa</h3><p>Entendo como o seu negócio funciona hoje: o caderno, a planilha, os grupos de WhatsApp. Sem termos técnicos e sem compromisso.</p></li>
+          <li class="is-on" data-s="0"><span class="st-n">01</span><h3>Conversa</h3><p>Entendo como o seu negócio funciona hoje: o caderno, a planilha, os grupos de WhatsApp. Uma conversa sem compromisso.</p></li>
           <li data-s="1"><span class="st-n">02</span><h3>Proposta</h3><p>O que era anotação vira um plano: quais informações entram, quem usa e o que o sistema precisa fazer. Escopo, prazo e valor por escrito.</p></li>
           <li data-s="2"><span class="st-n">03</span><h3>Desenvolvimento</h3><p>O plano vira sistema. Você testa versões durante o caminho e pede ajustes antes da entrega final.</p></li>
           <li data-s="3"><span class="st-n">04</span><h3>Entrega e suporte</h3><p>Sistema no ar, equipe treinada e os números do negócio na tela. E eu continuo por perto para manutenção e melhorias.</p></li>
@@ -650,7 +653,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   <section class="block" id="perguntas" style="padding-top:24px">
     <div class="wrap">
       <div class="head"><h2>Perguntas frequentes</h2><p>As dúvidas que mais aparecem antes da primeira conversa.</p></div>
-      <div class="faq"><details class="faq-i"><summary>Quanto tempo leva para ficar pronto?</summary><p>Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas.</p></details><details class="faq-i"><summary>Como funciona o orçamento?</summary><p>Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. O orçamento é sem compromisso.</p></details><details class="faq-i"><summary>Preciso entender de tecnologia?</summary><p>Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento para equipe.</p></details><details class="faq-i"><summary>Quem cuida do sistema depois da entrega?</summary><p>Eu continuo por perto para suporte, ajustes e melhorias. Dá para combinar um acompanhamento mensal.</p></details><details class="faq-i"><summary>Onde ficam os meus dados?</summary><p>Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus.</p></details><details class="faq-i"><summary>Funciona no celular?</summary><p>Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada.</p></details></div>
+      <div class="faq"><details class="faq-i"><summary>Quanto tempo leva para ficar pronto?</summary><p>Depende do tamanho. Um site costuma levar de alguns dias a poucas semanas; um sistema, de algumas semanas a poucos meses. Na proposta você recebe o prazo por escrito, dividido em etapas.</p></details><details class="faq-i"><summary>Como funciona o orçamento?</summary><p>Primeiro a gente conversa sobre como o seu negócio funciona hoje. Depois eu envio uma proposta com escopo, prazo e valor por escrito. O orçamento é sem compromisso.</p></details><details class="faq-i"><summary>Quanto custa?</summary><p>Depende do que o seu negócio precisa, mas para você ter uma referência: sites a partir de R$ 1.500 e sistemas sob medida a partir de R$ 4.500. A manutenção mensal é opcional, a partir de R$ 80. O valor exato vem na proposta, por escrito, depois da nossa conversa.</p></details><details class="faq-i"><summary>Você atende fora de São Paulo?</summary><p>Sim. Todo o trabalho pode ser feito online, por videochamada e WhatsApp, para qualquer cidade do Brasil. Em São Paulo e região, também dá para conversar pessoalmente.</p></details><details class="faq-i"><summary>Preciso entender de tecnologia?</summary><p>Não. Eu explico tudo em linguagem simples e entrego o sistema com treinamento para equipe.</p></details><details class="faq-i"><summary>Quem cuida do sistema depois da entrega?</summary><p>Eu continuo por perto para suporte, ajustes e melhorias. Dá para combinar um acompanhamento mensal.</p></details><details class="faq-i"><summary>Onde ficam os meus dados?</summary><p>Em servidores profissionais na nuvem, com acesso por login e perfil de usuário. Cada pessoa vê só o que precisa, e os dados são seus.</p></details><details class="faq-i"><summary>Funciona no celular?</summary><p>Sim. Tudo o que eu desenvolvo funciona no computador, no tablet e no celular, sem precisar instalar nada.</p></details></div>
     </div>
   </section>
 
@@ -662,7 +665,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
         </div>
         <div>
           <h2>Sobre mim</h2>
-          <p>Sou <strong>Bruno Moreno Nobre</strong>. Antes de programar, passei mais de 10 anos na operação: comprando, controlando estoque, vendendo e liderando a equipe do almoxarifado. Conheço de perto a planilha que ninguém atualiza, o caderno que some e o pedido que se perde no WhatsApp, porque eu já estive desse lado. <strong>Por isso eu não começo pela tecnologia: começo pelo problema que trava o seu dia.</strong></p>
+          <p>Sou <strong>Bruno Moreno Nobre</strong>. Minha história com sistemas começou do outro lado do balcão: no almoxarifado, comprando, controlando estoque e liderando equipe, convivendo todo dia com a planilha que ninguém atualiza e o pedido que se perde no WhatsApp. <strong>Foi ali que eu decidi parar de remendar planilhas e começar a construir as ferramentas que faltavam.</strong></p>
           <p>Hoje estou no último semestre de Análise e Desenvolvimento de Sistemas, curso também Inteligência Artificial e Automação, e desenvolvo sistemas usados diariamente em uma faculdade e um colégio. Agora levo essa experiência para oficinas, lojas e pequenas empresas que querem crescer sem depender da planilha.</p>
           <p><a class="li-link" id="li2" href="https://www.linkedin.com/in/brunomorenodev" target="_blank" rel="noopener">Ver minha trajetória no LinkedIn →</a></p>
         </div>
@@ -671,7 +674,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       <div class="cta" id="contato">
         <div>
           <h2>Seu negócio ainda depende de papel ou planilha?</h2>
-          <p>Me conta como funciona hoje. O orçamento é sem compromisso.</p>
+          <p>Me conta como funciona hoje. Eu mesmo respondo, sem robô e sem compromisso.</p>
         </div>
         <a class="btn btn-mint js-wa" href="https://wa.me/5511962528030?text=Ol%C3%A1%2C%20Bruno%21%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20sistema%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
@@ -845,6 +848,15 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
   const splitClient = c => { const m = String(c||"").match(/\s*\(em implanta[çc][ãa]o\)\s*$/i); return { name: m ? String(c).slice(0, m.index) : (c||""), wip: !!m }; };
   const badge = wip => wip ? '<span class="badge">Em implantação</span>' : "";
   function highlights(p){ const h = HIGHLIGHTS[p.slug]; return h ? '<ul class="hl">'+h.map(t=>"<li>"+esc(t)+"</li>").join("")+"</ul>" : chips(p.tech); }
+  // Imagens locais (img/...jpg) ganham versões WebP leves; imagens enviadas pelo admin continuam como estão
+  function pic(url, alt, sizes, extra){
+    const u = String(url||"");
+    const img = '<img src="'+esc(u)+'" alt="'+esc(alt)+'" '+(extra===undefined?'loading="lazy"':extra)+'>';
+    if (!/^img\/.+\.jpg$/i.test(u) || /-600\.jpg$/i.test(u)) return img;
+    const b = u.slice(0,-4);
+    return '<picture><source type="image/webp" srcset="'+esc(b)+'-600.webp 600w, '+esc(b)+'-1200.webp 1200w" sizes="'+sizes+'">'+img+'</picture>';
+  }
+  const SZ_SHOT = "(max-width: 900px) 92vw, 640px", SZ_GAL = "(max-width: 720px) 92vw, 520px";
   function chips(list){ return (list||[]).length ? '<ul class="chips">'+list.map(t=>"<li>"+esc(t)+"</li>").join("")+"</ul>" : ""; }
 
   function renderList(){
@@ -856,7 +868,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     const shown = filter === "todos" ? projects : projects.filter(p => (p.category || "sistema") === filter);
     el.innerHTML = shown.map(p => `
       <article class="project">
-        <div class="shot"><img src="${esc(p.cover_url)}" alt="Tela do projeto ${esc(p.title)}" loading="lazy"></div>
+        <div class="shot">${pic(p.cover_url, "Tela do projeto "+p.title, SZ_SHOT)}</div>
         <div class="body">
           <p class="client">${esc(splitClient(p.client).name)}${badge(splitClient(p.client).wip)}</p>
           <h3>${esc(p.title)}</h3>
@@ -881,13 +893,13 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
     $("#case-bar").textContent = p.title;
     const imgs = (p.images||[]).map(i => `
       <figure class="${i.mobile ? "mobile" : ""}">
-        <a href="${esc(i.url)}" target="_blank" rel="noopener"><img src="${esc(i.url)}" alt="${esc(i.caption || p.title)}" loading="lazy"></a>
+        <a href="${esc(i.url)}" target="_blank" rel="noopener">${pic(i.url, i.caption || p.title, SZ_GAL)}</a>
         ${i.caption ? "<figcaption>"+esc(i.caption)+"</figcaption>" : ""}
       </figure>`).join("");
     const ba = p.before_url ? `
       <div class="ba">
-        <figure><img src="${esc(p.before_url)}" alt="${esc(p.before_caption || "Como era antes")}"><figcaption><b>Antes.</b> ${esc((c => c.charAt(0).toUpperCase()+c.slice(1))((p.before_caption||"").replace(/^Antes:\s*/i,"")))}</figcaption></figure>
-        <figure><img src="${esc(p.cover_url)}" alt="Tela do sistema ${esc(p.title)}"><figcaption><b>Depois.</b> ${esc(p.title)} em uso.</figcaption></figure>
+        <figure>${pic(p.before_url, p.before_caption || "Como era antes", SZ_GAL, "")}<figcaption><b>Antes.</b> ${esc((c => c.charAt(0).toUpperCase()+c.slice(1))((p.before_caption||"").replace(/^Antes:\s*/i,"")))}</figcaption></figure>
+        <figure>${pic(p.cover_url, "Tela do sistema "+p.title, SZ_GAL, "")}<figcaption><b>Depois.</b> ${esc(p.title)} em uso.</figcaption></figure>
       </div>` : "";
     $("#case-body").innerHTML = `
       <p class="client">${esc(splitClient(p.client).name)}${badge(splitClient(p.client).wip)}</p>
@@ -902,7 +914,7 @@ dialog.case::backdrop{background:rgba(5,10,20,.7)}
       <div class="gallery">${imgs}</div>
       <div class="case-tech">${chips(p.tech)}</div>
       <div class="case-cta">
-        <div><h3>${(p.category || "sistema") === "site" ? "Quer um site assim para o seu negócio?" : "Quer um sistema assim para o seu negócio?"}</h3><p>Me conta como funciona hoje. O orçamento é sem compromisso.</p></div>
+        <div><h3>${(p.category || "sistema") === "site" ? "Quer um site assim para o seu negócio?" : "Quer um sistema assim para o seu negócio?"}</h3><p>Me conta como funciona hoje e eu te mostro o caminho.</p></div>
         <a class="btn btn-mint" id="case-wa" href="${esc(caseWa(p))}" ${isTouch ? "" : 'target="_blank" rel="noopener"'}>${WA_ICON}Conversar no WhatsApp</a>
       </div>`;
     const cw = $("#case-wa"); if (cw) cw.addEventListener("click", () => track("whatsapp_click", "projeto:" + p.slug));
