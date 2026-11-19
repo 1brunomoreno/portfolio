@@ -216,6 +216,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
     $("#logout").hidden = !data.session;
     $("#tab-projects").hidden = $("#tab-metrics").hidden = !data.session;
     if (!data.session) { show("login"); return; }
+    try{ localStorage.setItem("bm_notrack", "1"); }catch(e){} // este aparelho deixa de contar nas métricas
     await loadList();
   }
 
@@ -354,6 +355,7 @@ header .btn.ghost{color:#F4F6F8;box-shadow:inset 0 0 0 1.5px rgba(244,246,248,.3
   let days = 30;
   const NAMES = { "gestao-de-frota":"Gestão de Frota", "controle-de-abastecimento":"Controle de Abastecimento", "controle-de-estoque":"Controle de Estoque", "watts-oficina":"WATTS OS", "site-brunomorenodev":"Site de portfólio" };
   const SECTION = { topo:"Topo do site", sobre:"Contato (final da página)", servicos:"Serviços", projetos:"Projetos", monte:"Monte seu projeto", flutuante:"Botão flutuante (celular)", rodape:"Rodapé", "por-que-eu":"Por que eu" };
+  Object.entries(NAMES).forEach(([k,v]) => { SECTION["projeto:"+k] = "Página do projeto: " + v; });
   function rank(el, counts, labels){
     const entries = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,8);
     const max = entries.length ? entries[0][1] : 1;
