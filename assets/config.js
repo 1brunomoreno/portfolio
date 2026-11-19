@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   WHATSAPP_MSG: "Olá, Bruno! Vi seu site e quero conversar sobre um sistema para o meu negócio.",
   INSTAGRAM: "brunomoreno.dev",
   LINKEDIN: "brunomorenodev",
-  PORTRAIT_URL: "img/bruno.jpg",
+  PORTRAIT_URL: "img/bruno-moreno-nobre.jpg",
   STORAGE_BUCKET: "portfolio",
   // Depoimentos: a seção só aparece quando houver pelo menos um. Exemplo:
   // { text: "O sistema acabou com a planilha de papel.", name: "Nome da pessoa", role: "Cargo, Empresa" }
